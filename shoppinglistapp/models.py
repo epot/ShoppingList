@@ -1,3 +1,5 @@
+from datetime import datetime 
+
 from django.db import models
 
 # Create your models here.
@@ -22,6 +24,7 @@ class Ingredient(models.Model):
 
 class Recipe(models.Model):
     name = models.CharField(max_length=200)
+    creation_date = models.DateTimeField(default=datetime.now())
     
     def __unicode__(self):
         return self.name
@@ -33,4 +36,4 @@ class RecipeElement(models.Model):
     quantity = models.IntegerField(default=0)
     
     def __unicode__(self):
-        return "{} {} {} in {}".format(self.quantity, self.unit_measurement, self.ingredient, self.recipe)
+        return "{} {} {}".format(self.quantity, self.unit_measurement, self.ingredient)
