@@ -2,7 +2,9 @@ from django.shortcuts import render, get_object_or_404
 from shopping.models import Recipe, RecipeElement
 from django.http import HttpResponseRedirect, HttpResponse
 
-# Create your views here.
+from django.contrib.auth.decorators import login_required
+
+@login_required(login_url='/shopping/accounts/login/')
 def index(request):
     latest_recipe_list = Recipe.objects.order_by('-creation_date')[:5]
     print latest_recipe_list

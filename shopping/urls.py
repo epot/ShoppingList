@@ -8,4 +8,7 @@ urlpatterns = patterns('',
     url(r'^(?P<recipe_id>\d+)/$', views.recipe_detail, name='recipe_detail'),
     # ex: /recipe/5/addelement/
     url(r'^(?P<recipe_id>\d+)/addelement/$', views.addelement, name='addelement'),
+    url(r'^accounts/login/$', 'django.contrib.auth.views.login', {
+        'template_name': 'shopping/login.html'
+    }),
 )
