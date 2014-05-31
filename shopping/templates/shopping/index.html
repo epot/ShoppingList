@@ -1,9 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}My recipes{% endblock %}
+
+{% block content %}
+
 {% if latest_recipe_list %}
-    <ul>
-    {% for recipe in latest_recipe_list %}
-        <li><a href="/shopping/{{ recipe.id }}/">{{ recipe.name }}</a></li>
-    {% endfor %}
-    </ul>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Recipe</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for recipe in latest_recipe_list %}
+        <tr>
+          <td><a href="/shopping/{{ recipe.id }}/">{{ recipe.name }}</a></td>
+          <td></td>
+        <tr>
+      {% endfor %}
+    </tbody>
+  </table>
 {% else %}
     <p>No recipes are available.</p>
 {% endif %}
+
+{% endblock %}

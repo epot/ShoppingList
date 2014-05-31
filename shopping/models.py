@@ -37,3 +37,6 @@ class RecipeElement(models.Model):
     
     def __unicode__(self):
         return "{} {} {}".format(self.quantity, self.unit_measurement, self.ingredient)
+
+    def details(self):
+        return "{} {}".format(self.quantity, self.unit_measurement)
