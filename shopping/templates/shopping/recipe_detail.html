@@ -1,0 +1,21 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/bootstrap-responsive.min.css"/> 
+<script type="text/javascript" src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+
+<h1>{{ recipe.name }}</h1>
+<ul>
+{% for element in elements %}
+    <li>{{ element }}</li>
+{% endfor %}
+</ul>
+
+<form action="{% url 'shopping:addelement' recipe.id %}" method="post">
+{% csrf_token %}
+{% for ingredient in Ingredients.objects %}
+    <input type="radio" name="ingredient" id="ingredient{{ forloop.counter }}" value="{{ ingredient.id }}" />
+    <label for="ingredient{{ forloop.counter }}">{{ ingredient.name }}</label><br />
+{% endfor %}
+<input type="submit" value="Add" class="btn btn-default"/>
+</form>
