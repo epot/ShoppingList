@@ -1,6 +1,7 @@
 from datetime import datetime 
 
 from django.db import models
+from django.forms import ModelForm
 
 # Create your models here.
 class Category(models.Model):
@@ -28,6 +29,11 @@ class Recipe(models.Model):
     
     def __unicode__(self):
         return self.name
+
+class RecipeForm(ModelForm):
+    class Meta: 
+        model = Recipe
+        fields = ['name',]
 
 class RecipeElement(models.Model):
     recipe = models.ForeignKey(Recipe)
