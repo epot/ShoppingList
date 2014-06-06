@@ -1,7 +1,7 @@
 from datetime import datetime 
 
 from django.db import models
-from django.forms import ModelForm
+from django.forms import ModelForm, HiddenInput
 
 # Create your models here.
 class Category(models.Model):
@@ -34,6 +34,10 @@ class RecipeForm(ModelForm):
     class Meta: 
         model = Recipe
 
+class IngredientForm(ModelForm):
+    class Meta: 
+        model = Ingredient
+
 class RecipeElement(models.Model):
     recipe = models.ForeignKey(Recipe)
     ingredient = models.ForeignKey(Ingredient)
@@ -45,3 +49,15 @@ class RecipeElement(models.Model):
 
     def details(self):
         return "{} {}".format(self.quantity, self.unit_measurement)
+
+class RecipeElementForm(ModelForm):
+    class Meta: 
+        model = RecipeElement
+        widgets = {'recipe': HiddenInput()}
+        
+class ShoppingList(models.Model):
+    recipes = models.ManyToManyField(Recipe)
+    
+class ShoppingListForm(ModelForm):
+    class Meta: 
+        model = ShoppingList

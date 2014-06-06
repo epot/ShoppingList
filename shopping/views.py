@@ -1,5 +1,5 @@
 from django.shortcuts import render, render_to_response, get_object_or_404
-from shopping.models import Recipe, RecipeElement
+from shopping.models import Recipe, RecipeElement, IngredientForm, RecipeElementForm, ShoppingList
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.forms.models import modelformset_factory
@@ -19,6 +19,13 @@ class RecipeMixin(object):
         kwargs.update({'object_name':'Recipe'})
         return kwargs
 
+class ShoppingListMixin(object):
+    model = ShoppingList
+    success_url = reverse_lazy('shopping:index')
+    def get_context_data(self, **kwargs):
+        kwargs.update({'object_name':'Shopping List'})
+        return kwargs
+
 @login_required(login_url='/shopping/accounts/login/')
 def index(request):
     latest_recipe_list = Recipe.objects.order_by('-creation_date')[:5]
@@ -35,9 +42,30 @@ class RecipeUpdate(RecipeMixin, UpdateView):
 class RecipeDelete(RecipeMixin, DeleteView):
     pass
 
+class ShoppingListCreate(ShoppingListMixin, CreateView):
+    pass
+
+class ShoppingListUpdate(ShoppingListMixin, UpdateView):
+    pass
+
+class ShoppingListDelete(ShoppingListMixin, DeleteView):
+    pass
+
 def recipe_detail(request, recipe_id):
     recipe = get_object_or_404(Recipe, pk=recipe_id)
-    return render(request, 'shopping/recipe_detail.html', {'recipe': recipe, 'elements': RecipeElement.objects.filter(recipe=recipe)})
+    if request.method == 'POST':
+        form = RecipeElementForm(request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        data = {'recipe': recipe.id}
+        form = RecipeElementForm(initial=data)
+        
+    return render(request, 'shopping/recipe_detail.html', 
+                  {'recipe': recipe, 
+                   'elements': RecipeElement.objects.filter(recipe=recipe), 
+                   'form': form}
+                  )
 
 def remove_element(request, recipe_id, element_id):
     element = get_object_or_404(RecipeElement, pk=element_id)

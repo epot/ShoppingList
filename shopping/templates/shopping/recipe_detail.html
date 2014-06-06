@@ -22,24 +22,15 @@
           <td><a href="/shopping/{{ recipe.id }}/remove_element/{{ element.id }}"><i class="glyphicon glyphicon-remove"></i></a></td>
         <tr>
       {% endfor %}
-
-      <tr>
-        <form action="{% url 'shopping:add_element' recipe.id %}" method="post">
-          <td/>
-          <td>
-            {% for ingredient in Ingredient.objects.all %} 
-                <option value="ingredient">{{ ingredient.name }}</option>
-            {% endfor %}  
-          </td>
-          <td>
-            {% for unit_measurement in UnitMeasurement.objects %} 
-                <option value="unit_measurement">{{ unit_measurement.name }}</option>
-            {% endfor %}  
-          </td>
-          <td><input type="submit" value="Add"><i class="glyphicon glyphicon-add"></i></input></td>
-        </form>
-      </tr>
     </tbody>
   </table>
+  
+  
+  <form action="" method="post">{% csrf_token %}
+    {% csrf_token %} 
+    {% load bootstrap %}
+    {{ form|bootstrap }}
+    <input type="submit" class="btn btn-primary" value="Add ingredient"/>
+  </form>
 {% endblock %}
 

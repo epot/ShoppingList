@@ -16,8 +16,8 @@
       {% for recipe in latest_recipe_list %}
         <tr>
           <td><a href="/shopping/{{ recipe.id }}/">{{ recipe.name }}</a></td>
-          <td><a href="/shopping/edit/{{ recipe.id }}"><i class="glyphicon glyphicon-edit"></i></a></td>
-          <td><a href="/shopping/delete/{{ recipe.id }}"><i class="glyphicon glyphicon-remove"></i></a></td>
+          <td><a href="/shopping/recipe/edit/{{ recipe.id }}"><i class="glyphicon glyphicon-edit"></i></a></td>
+          <td><a href="/shopping/recipe/delete/{{ recipe.id }}"><i class="glyphicon glyphicon-remove"></i></a></td>
         <tr>
       {% endfor %}
     </tbody>
