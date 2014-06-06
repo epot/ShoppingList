@@ -25,7 +25,7 @@ class Ingredient(models.Model):
 
 class Recipe(models.Model):
     name = models.CharField(max_length=200)
-    creation_date = models.DateTimeField(default=datetime.now())
+    creation_date = models.DateTimeField(default=datetime.now(), editable=False)
     
     def __unicode__(self):
         return self.name
@@ -33,7 +33,6 @@ class Recipe(models.Model):
 class RecipeForm(ModelForm):
     class Meta: 
         model = Recipe
-        fields = ['name',]
 
 class RecipeElement(models.Model):
     recipe = models.ForeignKey(Recipe)

@@ -1,12 +1,17 @@
 {% extends 'base.html' %}
 
+{% load bootstrap %}
+
 {% block title %}{{object_name}} Form{% endblock %}
 
 {% block content %}
 <h3>{% if object %}Updating {{object}}{% else %}Add a new {{object_name}}{% endif %}</h3>
 <form action="" method="post">{% csrf_token %}
-<table>
-{{form}}
-</table>
-<input type="submit" class="btn btn-primary" value="Save {{object_name}}"/></form>
+  {% csrf_token %} 
+  {{ form|bootstrap }}
+  <input type="submit" class="btn btn-primary" value="Save {{object_name}}"/>
+</form>
+
+
+
 {% endblock %}

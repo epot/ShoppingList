@@ -12,6 +12,12 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 
 
+class RecipeMixin(object):
+    model = Recipe
+    success_url = reverse_lazy('shopping:index')
+    def get_context_data(self, **kwargs):
+        kwargs.update({'object_name':'Recipe'})
+        return kwargs
 
 @login_required(login_url='/shopping/accounts/login/')
 def index(request):
@@ -20,17 +26,14 @@ def index(request):
     context = {'latest_recipe_list': latest_recipe_list}
     return render(request, 'shopping/index.html', context)
 
-class RecipeCreate(CreateView):
-    model = Recipe
-    success_url = reverse_lazy('shopping:index')
+class RecipeCreate(RecipeMixin, CreateView):
+    pass
 
-class RecipeUpdate(UpdateView):
-    model = Recipe
-    success_url = reverse_lazy('shopping:index')
+class RecipeUpdate(RecipeMixin, UpdateView):
+    pass
 
-class RecipeDelete(DeleteView):
-    model = Recipe
-    success_url = reverse_lazy('shopping:index')
+class RecipeDelete(RecipeMixin, DeleteView):
+    pass
 
 def recipe_detail(request, recipe_id):
     recipe = get_object_or_404(Recipe, pk=recipe_id)
