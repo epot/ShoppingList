@@ -23,8 +23,22 @@
     </div>
   </div>
 
-  <div class="container">
-      {% block content %}{% endblock %}
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2 bs-docs-sidebar">
+        {% load tags %}
+        <ul class="nav nav-pills nav-stacked">
+          <li class="{% active current_path "^/shopping/$" %}"><a href="/shopping">Recipes</a></li>
+          <li class="{% active current_path "^/shopping/ingredient" %}"><a href="/shopping/ingredient">Ingredients</a></li>
+          <li class="{% active current_path "^/shopping/list" %}"><a href="/shopping/list">Shopping list</a></li>
+        </ul>
+      </div>
+      <div class="col-md-10 ">
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+      </div>
+    </div>
   </div>
 </body>
 </html>

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}My Ingredients{% endblock %}
+
+{% block content %}
+
+{% if latest_ingredient_list %}
+  <table class="table table-striped table-hover table-bordered">
+    <thead>
+      <tr>
+        <th>Ingredient</th>
+        <th>Category</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for ingredient in latest_ingredient_list %}
+        <tr>
+          <td><a href="/shopping/ingredient/{{ ingredient.id }}/">{{ ingredient.name }}</a></td>
+          <td>{{ ingredient.category }}</td>
+          <td>
+            <div class="btn-toolbar">
+              <div class="btn-group">
+                <a href="/shopping/ingredient/edit/{{ ingredient.id }}"><i class="glyphicon glyphicon-edit"></i></a>
+                <a href="/shopping/ingredient/delete/{{ ingredient.id }}"><i class="glyphicon glyphicon-remove"></i></a>
+              </div>
+            </div>
+          </td>
+        <tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+    <p>No ingredients are available.</p>
+{% endif %}
+
+
+<a href="{% url "shopping:ingredient_new" %}" class="btn btn-primary">Add new Ingredient</a>
+
+{% endblock %}
