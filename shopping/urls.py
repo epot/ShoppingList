@@ -19,6 +19,7 @@ urlpatterns = patterns('',
     }),
                        
     url(r'^list/$', views.shopping_list, name='list_list'),
+    url(r'^list/(?P<list_id>\d+)/$', views.shoppinglist_detail, name='shoppinglist_detail'),
     url(r'^list/new$', views.ShoppingListCreate.as_view(), name='list_new'),
     url(r'^list/edit/(?P<pk>\d+)$', views.ShoppingListUpdate.as_view(), name='list_edit'),
     url(r'^list/delete/(?P<pk>\d+)$', views.ShoppingListDelete.as_view(), name='list_delete'),

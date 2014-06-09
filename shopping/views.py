@@ -103,6 +103,31 @@ def recipe_detail(request, recipe_id):
                    'form': form}
                   )
 
+def shoppinglist_detail(request, list_id):
+    shoppinglist = get_object_or_404(ShoppingList, pk=list_id)
+    if request.method == 'POST':
+        form = RecipeElementForm(request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        data = {'shoppinglist': shoppinglist.id}
+        form = RecipeElementForm(initial=data)
+
+    elements = RecipeElement.objects.filter(recipe__in=shoppinglist.recipes.all())
+    
+    ingredients = set(map(lambda x:x.ingredient, elements))
+    new_elements = []
+    for ingredient in ingredients:
+        gna = [y  for y in elements if y.ingredient==ingredient]
+        details = [y.details()  for y in gna]
+        new_elements.append([gna[0].ingredient.category.name, gna[0].ingredient.name, '+'.join(details)])
+    
+    return render(request, 'shopping/shoppinglist_detail.html', 
+                  {'shoppinglist': shoppinglist, 
+                   'elements': new_elements, 
+                   'form': form}
+                  )
+
 def remove_element(request, recipe_id, element_id):
     element = get_object_or_404(RecipeElement, pk=element_id)
     element.delete()
