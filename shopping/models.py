@@ -29,34 +29,30 @@ class Ingredient(models.Model):
 
 class Recipe(models.Model):
     name = models.CharField(max_length=200)
+    servings = models.IntegerField()
+    comment = models.TextField(max_length=4000, blank=True, null=True)
     creation_date = models.DateTimeField(default=datetime.now(), editable=False)
     owners = models.ManyToManyField(User)
     
     def __unicode__(self):
         return self.name
 
-class RecipeForm(ModelForm):
-    class Meta: 
-        model = Recipe
-
 class IngredientForm(ModelForm):
     class Meta: 
         model = Ingredient
- 
+
 class ShoppingList(models.Model):
+    name = models.CharField(max_length=200)
     recipes = models.ManyToManyField(Recipe)
     creation_date = models.DateTimeField(default=datetime.now(), editable=False)
-    
-class ShoppingListForm(ModelForm):
-    class Meta: 
-        model = ShoppingList
+    owners = models.ManyToManyField(User)
 
 class RecipeElement(models.Model):
     recipe = models.ForeignKey(Recipe, blank=True, null=True)
     shoppinglist = models.ForeignKey(ShoppingList, blank=True, null=True)
     ingredient = models.ForeignKey(Ingredient)
     unit_measurement = models.ForeignKey(UnitMeasurement)
-    quantity = models.IntegerField(default=0)
+    quantity = models.IntegerField()
     
     def __unicode__(self):
         return "{} {} {}".format(self.quantity, self.unit_measurement, self.ingredient)

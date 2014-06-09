@@ -15,6 +15,7 @@ from django.core.urlresolvers import reverse_lazy
 
 class RecipeMixin(object):
     model = Recipe
+    fields = ['name', 'servings', 'comment']
     success_url = reverse_lazy('shopping:recipe_list')
     def get_context_data(self, **kwargs):
         kwargs.update({'object_name':'Recipe', 'menu_category': 'recipe'})
@@ -22,6 +23,7 @@ class RecipeMixin(object):
 
 class ShoppingListMixin(object):
     model = ShoppingList
+    fields = ['name', 'recipes']
     success_url = reverse_lazy('shopping:list_list')
     def get_context_data(self, **kwargs):
         kwargs.update({'object_name':'Shopping List', 'menu_category': 'shoppinglist'})
@@ -53,7 +55,10 @@ def ingredient_list(request):
     return render(request, 'shopping/ingredient_list.html', context)
 
 class RecipeCreate(RecipeMixin, CreateView):
-    pass
+    def form_valid(self, form):
+        return_value = super(RecipeCreate, self).form_valid(form)
+        form.instance.owners = [self.request.user]
+        return return_value
 
 class RecipeUpdate(RecipeMixin, UpdateView):
     pass
@@ -62,7 +67,10 @@ class RecipeDelete(RecipeMixin, DeleteView):
     pass
 
 class ShoppingListCreate(ShoppingListMixin, CreateView):
-    pass
+    def form_valid(self, form):
+        return_value = super(ShoppingListCreate, self).form_valid(form)
+        form.instance.owners = [self.request.user]
+        return return_value
 
 class ShoppingListUpdate(ShoppingListMixin, UpdateView):
     pass
