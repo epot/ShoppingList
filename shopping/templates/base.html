@@ -6,6 +6,7 @@
   <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/main.css"/>
   <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/bootstrap.min.css"/>
   <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/bootstrap-responsive.min.css"/> 
+  <script type="text/javascript" src="{{STATIC_URL}}js/jquery-1.11.1.js"></script>
   <script type="text/javascript" src="{{STATIC_URL}}js/bootstrap.min.js"></script>
     <title>{% block title %}Shopping list{% endblock %}</title>
 </head>
@@ -42,3 +43,9 @@
   </div>
 </body>
 </html>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.button-tooltip').tooltip();
+  });
+</script>
