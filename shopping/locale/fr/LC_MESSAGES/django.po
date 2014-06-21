@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-21 20:49+0200\n"
+"POT-Creation-Date: 2014-06-21 22:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,51 +18,58 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: models.py:12 models.py:18 models.py:25 models.py:32 models.py:46
+#: models.py:12 models.py:21 models.py:32 models.py:42 models.py:59
 msgid "Name"
 msgstr "Nom"
 
-#: models.py:24 templates/shopping/ingredient_list.html:13
+#: models.py:18 models.py:31 templates/shopping/ingredient_list.html:13
 msgid "Category"
 msgstr "Catégorie"
 
-#: models.py:33
+#: models.py:27 models.py:71
+msgid "Unit measurement"
+msgstr "Unité de mesure"
+
+#: models.py:28
+msgid "Units measurement"
+msgstr "Unités de mesure"
+
+#: models.py:39 models.py:70 templates/shopping/ingredient_list.html:12
+msgid "Ingredient"
+msgstr "Ingrédients"
+
+#: models.py:43
 msgid "Servings"
 msgstr "Portions"
 
-#: models.py:34
+#: models.py:44
 msgid "Comment"
 msgstr "Commentaire"
 
-#: models.py:36 models.py:49
+#: models.py:46 models.py:62
 msgid "Owners"
 msgstr "Propriétaires"
 
-#: models.py:47 templates/base.html:33
-msgid "Recipes"
-msgstr "Recettes"
-
-#: models.py:52 templates/shopping/recipe_list.html:12
+#: models.py:52 models.py:68 templates/shopping/recipe_list.html:12
 msgid "Recipe"
 msgstr "Recette"
 
-#: models.py:53 templates/base.html:35
+#: models.py:60 templates/base.html:33
+msgid "Recipes"
+msgstr "Recettes"
+
+#: models.py:65 models.py:69 templates/base.html:35
 #: templates/shopping/shopping_list.html:12
 msgid "Shopping list"
 msgstr "Listes de course"
 
-#: models.py:54 templates/shopping/ingredient_list.html:12
-#, fuzzy
-msgid "Ingredient"
-msgstr "Ingredients"
-
-#: models.py:55
-msgid "Unit measurement"
-msgstr "Unité de mesure"
-
-#: models.py:56
+#: models.py:72
 msgid "Quantity"
 msgstr "Quantité"
+
+#: models.py:81
+msgid "Recipe element"
+msgstr "Element de recette"
 
 #: templates/base.html:19
 msgid "Home"
@@ -86,8 +93,31 @@ msgstr "Etes vous sur de vouloir supprimer \"%(object)s\" ?"
 msgid "Yes"
 msgstr "Oui"
 
+#: templates/object_form.html:5
+#, python-format
+msgid " %(object_name)s Form "
+msgstr "Formulaire %(object_name)s"
+
+#: templates/object_form.html:8
+#, python-format
+msgid "Updating %(object)s"
+msgstr "Mettre à jour %(object)s"
+
+#: templates/object_form.html:8
+#, python-format
+msgid " Add a new %(object_name)s "
+msgstr "Ajouter un nouveau %(object_name)s "
+
+#: templates/object_form.html:12
+#, python-format
+msgid "Save %(object_name)s"
+msgstr "Sauver %(object_name)s"
+
+#: templates/shopping/ingredient_form.html:4
+msgid " Add a new ingredient "
+msgstr "Ajouter un nouvel ingrédient"
+
 #: templates/shopping/ingredient_list.html:4
-#, fuzzy
 msgid "My Ingredients"
 msgstr "Ingredients"
 
@@ -110,12 +140,10 @@ msgid "Delete"
 msgstr "Supprimer"
 
 #: templates/shopping/ingredient_list.html:35
-#, fuzzy
 msgid "No ingredients are available."
 msgstr "Pas d'ingrédient disponible"
 
 #: templates/shopping/ingredient_list.html:39
-#, fuzzy
 msgid "Add new ingredient"
 msgstr "Ajouter un nouvel ingrédient"
 
@@ -132,6 +160,10 @@ msgstr ""
 #: templates/shopping/login.html:19
 msgid "Login"
 msgstr "Connexion"
+
+#: templates/shopping/recipe_form.html:4
+msgid " Add a new recipe "
+msgstr "Ajouter une nouvelle recette"
 
 #: templates/shopping/recipe_list.html:4
 msgid "My recipes"
@@ -151,16 +183,17 @@ msgid "Add new recipe"
 msgstr "Ajouter une nouvelle recette"
 
 #: templates/shopping/shopping_list.html:4
-#, fuzzy
 msgid "My shopping lists"
 msgstr "Listes de course"
 
 #: templates/shopping/shopping_list.html:34
-#, fuzzy
 msgid "No shopping list are available."
-msgstr "Pas de list de course disponible"
+msgstr "Pas de liste de course disponible"
 
 #: templates/shopping/shopping_list.html:38
-#, fuzzy
 msgid "Add new shopping list"
+msgstr "Ajouter une nouvelle liste de course"
+
+#: templates/shopping/shoppinglist_form.html:4
+msgid " Add a new shopping list "
 msgstr "Ajouter une nouvelle liste de course"

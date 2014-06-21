@@ -13,12 +13,19 @@ class Category(models.Model):
     
     def __unicode__(self):
         return self.name
+    
+    class Meta:
+        verbose_name = _('Category')
 
 class UnitMeasurement(models.Model):
     name = models.CharField(max_length=200, verbose_name=_("Name"))
     
     def __unicode__(self):
         return self.name
+
+    class Meta:
+        verbose_name = _('Unit measurement')
+        verbose_name_plural = _('Units measurement')
 
 class Ingredient(models.Model):
     category = models.ForeignKey(Category, verbose_name=_("Category"))
@@ -27,6 +34,9 @@ class Ingredient(models.Model):
     
     def __unicode__(self):
         return "{} ({})".format(self.name, self.category)
+
+    class Meta:
+        verbose_name = _('Ingredient')
 
 class Recipe(models.Model):
     name = models.CharField(max_length=200, verbose_name=_("Name"))
@@ -38,6 +48,9 @@ class Recipe(models.Model):
     def __unicode__(self):
         return self.name
 
+    class Meta:
+        verbose_name = _('Recipe')
+
 class IngredientForm(ModelForm):
     class Meta: 
         model = Ingredient
@@ -47,6 +60,9 @@ class ShoppingList(models.Model):
     recipes = models.ManyToManyField(Recipe, verbose_name=_("Recipes"))
     creation_date = models.DateTimeField(default=datetime.now(), editable=False)
     owners = models.ManyToManyField(User, verbose_name=_("Owners"))
+
+    class Meta:
+        verbose_name = _('Shopping list')
 
 class RecipeElement(models.Model):
     recipe = models.ForeignKey(Recipe, blank=True, null=True, verbose_name=_("Recipe"))
@@ -60,6 +76,9 @@ class RecipeElement(models.Model):
 
     def details(self):
         return "{} {}".format(self.quantity, self.unit_measurement)
+
+    class Meta:
+        verbose_name = _('Recipe element')
 
 class RecipeElementForm(ModelForm):
     class Meta: 
