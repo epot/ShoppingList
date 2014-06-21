@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-21 22:21+0200\n"
+"POT-Creation-Date: 2014-06-21 23:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,11 +54,11 @@ msgstr "Propriétaires"
 msgid "Recipe"
 msgstr "Recette"
 
-#: models.py:60 templates/base.html:33
+#: models.py:60 templates/base.html:45
 msgid "Recipes"
 msgstr "Recettes"
 
-#: models.py:65 models.py:69 templates/base.html:35
+#: models.py:65 models.py:69 templates/base.html:47
 #: templates/shopping/shopping_list.html:12
 msgid "Shopping list"
 msgstr "Listes de course"
@@ -75,7 +75,15 @@ msgstr "Element de recette"
 msgid "Home"
 msgstr "Accueil"
 
-#: templates/base.html:34
+#: templates/base.html:28
+msgid "Logout"
+msgstr "Déconnexion"
+
+#: templates/base.html:32 templates/shopping/login.html:19
+msgid "Login"
+msgstr "Connexion"
+
+#: templates/base.html:46
 msgid "Ingredients"
 msgstr "Ingredients"
 
@@ -156,10 +164,6 @@ msgid "Your username and password didn't match. Please try again."
 msgstr ""
 "Votre nom d'utilisateur et votre mot de passe ne correspondent pas. Veuillez "
 "essayer à nouveau."
-
-#: templates/shopping/login.html:19
-msgid "Login"
-msgstr "Connexion"
 
 #: templates/shopping/recipe_form.html:4
 msgid " Add a new recipe "

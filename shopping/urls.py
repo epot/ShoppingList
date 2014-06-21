@@ -3,6 +3,12 @@ from django.conf.urls import patterns, url
 from shopping import views
 
 urlpatterns = patterns('',
+    url(r'^accounts/login/$', 'django.contrib.auth.views.login', {
+        'template_name': 'shopping/login.html'
+    }),
+    (r'^accounts/logout/$', 'django.contrib.auth.views.logout',{'next_page': '/shopping/accounts/login'}),
+    
+    
     url(r'^$', views.recipe_list, name='recipe_list'),
     # ex: /recipe/5/
     url(r'^(?P<recipe_id>\d+)/$', views.recipe_detail, name='recipe_detail'),
@@ -14,9 +20,6 @@ urlpatterns = patterns('',
     # ex: /recipe/5/addelement/
     url(r'^recipe/(?P<recipe_id>\d+)/remove_element/(?P<element_id>\d+)/$', views.remove_element, name='remove_element'),
     url(r'^recipe/(?P<recipe_id>\d+)/add_element/$', views.add_element, name='add_element'),
-    url(r'^accounts/login/$', 'django.contrib.auth.views.login', {
-        'template_name': 'shopping/login.html'
-    }),
                        
     url(r'^list/$', views.shopping_list, name='list_list'),
     url(r'^list/(?P<list_id>\d+)/$', views.shoppinglist_detail, name='shoppinglist_detail'),

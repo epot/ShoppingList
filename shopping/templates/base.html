@@ -16,12 +16,24 @@
   <div id="top" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
       <div class="navbar-header">
-            <a class="navbar-brand" href="/shopping">{% trans "Home" %}</a>
+        <a class="navbar-brand" href="/shopping">{% trans "Home" %}</a>
       </div>
       
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
-        
-      </div><!-- /.navbar-collapse --> 
+      <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav navbar-right">  
+        {% if user.is_authenticated %}
+          <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown">{{ user.username }}<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="/shopping/accounts/logout">{% trans "Logout" %}</a></li>
+              </ul>
+            </li>
+        {% else %}
+          <li><a href="/shopping/accounts/login/">{% trans "Login" %}</a></li>
+        {% endif %}
+          
+        </ul>  
+      </nav>
     </div>
   </div>
 
