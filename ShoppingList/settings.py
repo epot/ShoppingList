@@ -50,6 +50,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+LOGIN_REDIRECT_URL='/shopping'
+
 ROOT_URLCONF = 'ShoppingList.urls'
 
 WSGI_APPLICATION = 'ShoppingList.wsgi.application'
