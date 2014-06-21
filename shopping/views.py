@@ -44,7 +44,7 @@ def recipe_list(request):
 
 @login_required(login_url='/shopping/accounts/login/')
 def shopping_list(request):
-    latest_shopping_list = ShoppingList.objects.order_by('-creation_date')
+    latest_shopping_list = ShoppingList.objects.filter(owners__in=[request.user.id]).order_by('-creation_date')
     context = {'latest_shopping_list': latest_shopping_list, 'menu_category': 'shoppinglist'}
     return render(request, 'shopping/shopping_list.html', context)
 
