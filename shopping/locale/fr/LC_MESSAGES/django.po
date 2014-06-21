@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-21 13:41+0200\n"
+"POT-Creation-Date: 2014-06-21 16:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,20 +34,17 @@ msgstr "Ingredients"
 msgid "Shopping list"
 msgstr "Listes de course"
 
-#: templates/shopping/ingredient_confirm_delete.html:4
-#: templates/shopping/recipe_confirm_delete.html:4
+#: templates/object_confirm_delete.html:4
 #, python-format
 msgid " %(object_name)s Confirm deletion "
 msgstr " %(object_name)s Confirmer la suppression "
 
-#: templates/shopping/ingredient_confirm_delete.html:8
-#: templates/shopping/recipe_confirm_delete.html:8
+#: templates/object_confirm_delete.html:8
 #, python-format
 msgid " Are you sure you want to delete \"%(object)s\" ?"
 msgstr "Etes vous sur de vouloir supprimer \"%(object)s\" ?"
 
-#: templates/shopping/ingredient_confirm_delete.html:9
-#: templates/shopping/recipe_confirm_delete.html:9
+#: templates/object_confirm_delete.html:9
 msgid "Yes"
 msgstr "Oui"
 
