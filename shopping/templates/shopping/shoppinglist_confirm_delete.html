@@ -1,10 +1,1 @@
-{% extends 'base.html' %}
-
-{% block title %}{{object_name}} Confirm deletion{% endblock %}
-
-{% block content %}
-<form method="post">{% csrf_token %}
-    Are you sure you want to delete "{{ object }}" ?
-    <input type="submit" value="Submit" class="btn btn-primary"/>
-</form>
-{% endblock %}
+{% extends 'object_confirm_delete.html' %}
