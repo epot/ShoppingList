@@ -2,16 +2,15 @@
 
 from django.shortcuts import render, render_to_response, get_object_or_404
 from shopping.models import Recipe, RecipeElement, Ingredient, RecipeElementForm, ShoppingList
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.core.urlresolvers import reverse
 
 from django.contrib.auth.decorators import login_required
 
-
-
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 
+from django.utils.translation import ugettext_lazy as _
 
 class RecipeMixin(object):
     model = Recipe
@@ -64,7 +63,22 @@ class RecipeUpdate(RecipeMixin, UpdateView):
     pass
 
 class RecipeDelete(RecipeMixin, DeleteView):
-    pass
+    def get_object(self, queryset=None):
+        """ Hook to ensure object is owned by request.user. """
+        obj = super(RecipeDelete, self).get_object()
+        if self.request.user not in obj.owners.all():
+            raise Http404
+        return obj
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if self.object.owners.all() == [request.user]:
+            self.object.delete()
+        else:
+            self.object.owners.remove(request.user)
+            self.object.save()
+        print self.object.owners.all()
+        return HttpResponseRedirect(self.get_success_url())
 
 class ShoppingListCreate(ShoppingListMixin, CreateView):
     def form_valid(self, form):
