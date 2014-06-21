@@ -77,7 +77,6 @@ class RecipeDelete(RecipeMixin, DeleteView):
         else:
             self.object.owners.remove(request.user)
             self.object.save()
-        print self.object.owners.all()
         return HttpResponseRedirect(self.get_success_url())
 
 class ShoppingListCreate(ShoppingListMixin, CreateView):
@@ -90,7 +89,22 @@ class ShoppingListUpdate(ShoppingListMixin, UpdateView):
     pass
 
 class ShoppingListDelete(ShoppingListMixin, DeleteView):
-    pass
+    def get_object(self, queryset=None):
+        """ Hook to ensure object is owned by request.user. """
+        obj = super(RecipeDelete, self).get_object()
+        if self.request.user not in obj.owners.all():
+            raise Http404
+        return obj
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if self.object.owners.all() == [request.user]:
+            self.object.delete()
+        else:
+            self.object.owners.remove(request.user)
+            self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
+
 
 class IngredientCreate(IngredientMixin, CreateView):
     pass
