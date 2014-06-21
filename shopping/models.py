@@ -5,34 +5,35 @@ from datetime import datetime
 from django.db import models
 from django.forms import ModelForm, HiddenInput
 from django.contrib.auth.models import User
+from django.utils.translation import ugettext_lazy as _
 
 # Create your models here.
 class Category(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, verbose_name=_("Name"))
     
     def __unicode__(self):
         return self.name
 
 class UnitMeasurement(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, verbose_name=_("Name"))
     
     def __unicode__(self):
         return self.name
 
 class Ingredient(models.Model):
-    category = models.ForeignKey(Category)
-    name = models.CharField(max_length=200)
+    category = models.ForeignKey(Category, verbose_name=_("Category"))
+    name = models.CharField(max_length=200, verbose_name=_("Name"))
     creation_date = models.DateTimeField(default=datetime.now(), editable=False)
     
     def __unicode__(self):
         return "{} ({})".format(self.name, self.category)
 
 class Recipe(models.Model):
-    name = models.CharField(max_length=200)
-    servings = models.IntegerField()
-    comment = models.TextField(max_length=4000, blank=True, null=True)
+    name = models.CharField(max_length=200, verbose_name=_("Name"))
+    servings = models.IntegerField(verbose_name=_("Servings"))
+    comment = models.TextField(max_length=4000, blank=True, null=True, verbose_name=_("Comment"))
     creation_date = models.DateTimeField(default=datetime.now(), editable=False)
-    owners = models.ManyToManyField(User)
+    owners = models.ManyToManyField(User, verbose_name=_("Owners"))
     
     def __unicode__(self):
         return self.name
@@ -42,17 +43,17 @@ class IngredientForm(ModelForm):
         model = Ingredient
 
 class ShoppingList(models.Model):
-    name = models.CharField(max_length=200)
-    recipes = models.ManyToManyField(Recipe)
+    name = models.CharField(max_length=200, verbose_name=_("Name"))
+    recipes = models.ManyToManyField(Recipe, verbose_name=_("Recipes"))
     creation_date = models.DateTimeField(default=datetime.now(), editable=False)
-    owners = models.ManyToManyField(User)
+    owners = models.ManyToManyField(User, verbose_name=_("Owners"))
 
 class RecipeElement(models.Model):
-    recipe = models.ForeignKey(Recipe, blank=True, null=True)
-    shoppinglist = models.ForeignKey(ShoppingList, blank=True, null=True)
-    ingredient = models.ForeignKey(Ingredient)
-    unit_measurement = models.ForeignKey(UnitMeasurement)
-    quantity = models.IntegerField()
+    recipe = models.ForeignKey(Recipe, blank=True, null=True, verbose_name=_("Recipe"))
+    shoppinglist = models.ForeignKey(ShoppingList, blank=True, null=True, verbose_name=_("Shopping list"))
+    ingredient = models.ForeignKey(Ingredient, verbose_name=_("Ingredient"))
+    unit_measurement = models.ForeignKey(UnitMeasurement, verbose_name=_("Unit measurement"))
+    quantity = models.IntegerField(verbose_name=_("Quantity"))
     
     def __unicode__(self):
         return "{} {} {}".format(self.quantity, self.unit_measurement, self.ingredient)

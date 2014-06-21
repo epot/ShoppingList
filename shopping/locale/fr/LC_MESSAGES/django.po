@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-21 16:00+0200\n"
+"POT-Creation-Date: 2014-06-21 20:49+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,21 +18,59 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#: models.py:12 models.py:18 models.py:25 models.py:32 models.py:46
+msgid "Name"
+msgstr "Nom"
+
+#: models.py:24 templates/shopping/ingredient_list.html:13
+msgid "Category"
+msgstr "Catégorie"
+
+#: models.py:33
+msgid "Servings"
+msgstr "Portions"
+
+#: models.py:34
+msgid "Comment"
+msgstr "Commentaire"
+
+#: models.py:36 models.py:49
+msgid "Owners"
+msgstr "Propriétaires"
+
+#: models.py:47 templates/base.html:33
+msgid "Recipes"
+msgstr "Recettes"
+
+#: models.py:52 templates/shopping/recipe_list.html:12
+msgid "Recipe"
+msgstr "Recette"
+
+#: models.py:53 templates/base.html:35
+#: templates/shopping/shopping_list.html:12
+msgid "Shopping list"
+msgstr "Listes de course"
+
+#: models.py:54 templates/shopping/ingredient_list.html:12
+#, fuzzy
+msgid "Ingredient"
+msgstr "Ingredients"
+
+#: models.py:55
+msgid "Unit measurement"
+msgstr "Unité de mesure"
+
+#: models.py:56
+msgid "Quantity"
+msgstr "Quantité"
+
 #: templates/base.html:19
 msgid "Home"
 msgstr "Accueil"
 
-#: templates/base.html:33
-msgid "Recipes"
-msgstr "Recettes"
-
 #: templates/base.html:34
 msgid "Ingredients"
 msgstr "Ingredients"
-
-#: templates/base.html:35
-msgid "Shopping list"
-msgstr "Listes de course"
 
 #: templates/object_confirm_delete.html:4
 #, python-format
@@ -47,6 +85,39 @@ msgstr "Etes vous sur de vouloir supprimer \"%(object)s\" ?"
 #: templates/object_confirm_delete.html:9
 msgid "Yes"
 msgstr "Oui"
+
+#: templates/shopping/ingredient_list.html:4
+#, fuzzy
+msgid "My Ingredients"
+msgstr "Ingredients"
+
+#: templates/shopping/ingredient_list.html:14
+#: templates/shopping/recipe_list.html:13
+#: templates/shopping/shopping_list.html:13
+msgid "Actions"
+msgstr "Actions"
+
+#: templates/shopping/ingredient_list.html:25
+#: templates/shopping/recipe_list.html:23
+#: templates/shopping/shopping_list.html:23
+msgid "Edit"
+msgstr "Editer"
+
+#: templates/shopping/ingredient_list.html:26
+#: templates/shopping/recipe_list.html:25
+#: templates/shopping/shopping_list.html:25
+msgid "Delete"
+msgstr "Supprimer"
+
+#: templates/shopping/ingredient_list.html:35
+#, fuzzy
+msgid "No ingredients are available."
+msgstr "Pas d'ingrédient disponible"
+
+#: templates/shopping/ingredient_list.html:39
+#, fuzzy
+msgid "Add new ingredient"
+msgstr "Ajouter un nouvel ingrédient"
 
 #: templates/shopping/login.html:4
 msgid "Login page"
@@ -66,30 +137,30 @@ msgstr "Connexion"
 msgid "My recipes"
 msgstr "Mes recettes"
 
-#: templates/shopping/recipe_list.html:12
-msgid "Recipe"
-msgstr "Recette"
-
-#: templates/shopping/recipe_list.html:13
-msgid "Actions"
-msgstr "Actions"
-
-#: templates/shopping/recipe_list.html:23
-msgid "Edit"
-msgstr "Editer"
-
 #: templates/shopping/recipe_list.html:24
+#: templates/shopping/shopping_list.html:24
 msgid "Share"
 msgstr "Partager"
 
-#: templates/shopping/recipe_list.html:25
-msgid "Delete"
-msgstr "Supprimer"
-
 #: templates/shopping/recipe_list.html:34
 msgid "No recipes are available."
-msgstr "Pas de recettes disponibles"
+msgstr "Pas de recette disponible"
 
 #: templates/shopping/recipe_list.html:38
 msgid "Add new recipe"
 msgstr "Ajouter une nouvelle recette"
+
+#: templates/shopping/shopping_list.html:4
+#, fuzzy
+msgid "My shopping lists"
+msgstr "Listes de course"
+
+#: templates/shopping/shopping_list.html:34
+#, fuzzy
+msgid "No shopping list are available."
+msgstr "Pas de list de course disponible"
+
+#: templates/shopping/shopping_list.html:38
+#, fuzzy
+msgid "Add new shopping list"
+msgstr "Ajouter une nouvelle liste de course"
