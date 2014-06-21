@@ -38,7 +38,7 @@ class IngredientMixin(object):
 
 @login_required(login_url='/shopping/accounts/login/')
 def recipe_list(request):
-    latest_recipe_list = Recipe.objects.order_by('-creation_date')
+    latest_recipe_list = Recipe.objects.filter(owners__in=[request.user.id]).order_by('-creation_date')
     context = {'latest_recipe_list': latest_recipe_list, 'menu_category': 'recipe'}
     return render(request, 'shopping/recipe_list.html', context)
 
