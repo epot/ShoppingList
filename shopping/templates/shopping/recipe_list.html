@@ -1,6 +1,7 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}My recipes{% endblock %}
+{% block title %}{% trans "My recipes" %}{% endblock %}
 
 {% block content %}
 
@@ -8,8 +9,8 @@
   <table class="table table-striped table-hover table-bordered">
     <thead>
       <tr>
-        <th>Recipe</th>
-        <th>Action</th>
+        <th>{% trans "Recipe" %}</th>
+        <th>{% trans "Actions" %}</th>
       </tr>
     </thead>
     <tbody>
@@ -19,9 +20,9 @@
           <td>
             <div class="btn-toolbar">
               <div class="btn-group">
-                <a href="/shopping/recipe/edit/{{ recipe.id }}"><i class="glyphicon glyphicon-edit button-tooltip" data-toggle="tooltip" title="Edit"></i></a>
-                <a href="/shopping/recipe/share/{{ recipe.id }}"><i class="glyphicon glyphicon-share button-tooltip" data-toggle="tooltip" title="Share"></i></a>
-                <a href="/shopping/recipe/delete/{{ recipe.id }}"><i class="glyphicon glyphicon-remove button-tooltip" data-toggle="tooltip" title="Delete"></i></a>
+                <a href="/shopping/recipe/edit/{{ recipe.id }}"><i class="glyphicon glyphicon-edit button-tooltip" data-toggle="tooltip" title="{% trans "Edit" %}"></i></a>
+                <a href="/shopping/recipe/share/{{ recipe.id }}"><i class="glyphicon glyphicon-share button-tooltip" data-toggle="tooltip" title="{% trans "Share" %}"></i></a>
+                <a href="/shopping/recipe/delete/{{ recipe.id }}"><i class="glyphicon glyphicon-remove button-tooltip" data-toggle="tooltip" title="{% trans "Delete" %}"></i></a>
               </div>
             </div>
           </td>
@@ -30,10 +31,10 @@
     </tbody>
   </table>
 {% else %}
-    <p>No recipes are available.</p>
+    <p>{% trans "No recipes are available." %}</p>
 {% endif %}
 
 
-<a href="{% url "shopping:recipe_new" %}" class="btn btn-primary">Add new recipe</a>
+<a href="{% url "shopping:recipe_new" %}" class="btn btn-primary">{% trans "Add new recipe" %}</a>
 
 {% endblock %}
