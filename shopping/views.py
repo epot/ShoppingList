@@ -91,7 +91,7 @@ class ShoppingListUpdate(ShoppingListMixin, UpdateView):
 class ShoppingListDelete(ShoppingListMixin, DeleteView):
     def get_object(self, queryset=None):
         """ Hook to ensure object is owned by request.user. """
-        obj = super(RecipeDelete, self).get_object()
+        obj = super(ShoppingListDelete, self).get_object()
         if self.request.user not in obj.owners.all():
             raise Http404
         return obj
