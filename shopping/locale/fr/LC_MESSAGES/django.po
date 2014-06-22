@@ -79,7 +79,7 @@ msgstr "Accueil"
 
 #: templates/base.html:26
 msgid "Ingredients"
-msgstr "Ingredients"
+msgstr "Ingrédients"
 
 #: templates/base.html:34
 msgid "Logout"
@@ -148,7 +148,7 @@ msgstr "Ajouter un nouvel ingrédient"
 
 #: templates/shopping/ingredient_list.html:4
 msgid "My Ingredients"
-msgstr "Ingredients"
+msgstr "Mes ingrédients"
 
 #: templates/shopping/ingredient_list.html:14
 #: templates/shopping/recipe_list.html:13
@@ -218,7 +218,7 @@ msgstr "Ajouter une nouvelle recette"
 
 #: templates/shopping/shopping_list.html:4
 msgid "My shopping lists"
-msgstr "Listes de course"
+msgstr "Mes listes de course"
 
 #: templates/shopping/shopping_list.html:34
 msgid "No shopping list are available."
