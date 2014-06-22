@@ -174,7 +174,7 @@ msgstr "Action"
 
 #: templates/shopping/recipe_detail.html:34
 msgid "Add ingredient"
-msgstr "Ajouter l'ingrédient"
+msgstr "Ajouter un ingrédient"
 
 #: templates/shopping/recipe_form.html:4
 msgid " Add a new recipe "
