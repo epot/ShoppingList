@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-21 23:06+0200\n"
+"POT-Creation-Date: 2014-06-22 13:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,6 +23,7 @@ msgid "Name"
 msgstr "Nom"
 
 #: models.py:18 models.py:31 templates/shopping/ingredient_list.html:13
+#: templates/shopping/recipe_detail.html:11
 msgid "Category"
 msgstr "Catégorie"
 
@@ -35,8 +36,9 @@ msgid "Units measurement"
 msgstr "Unités de mesure"
 
 #: models.py:39 models.py:70 templates/shopping/ingredient_list.html:12
+#: templates/shopping/recipe_detail.html:12
 msgid "Ingredient"
-msgstr "Ingrédients"
+msgstr "Ingrédient"
 
 #: models.py:43
 msgid "Servings"
@@ -63,7 +65,7 @@ msgstr "Recettes"
 msgid "Shopping list"
 msgstr "Listes de course"
 
-#: models.py:72
+#: models.py:72 templates/shopping/recipe_detail.html:13
 msgid "Quantity"
 msgstr "Quantité"
 
@@ -142,6 +144,7 @@ msgid "Edit"
 msgstr "Editer"
 
 #: templates/shopping/ingredient_list.html:26
+#: templates/shopping/recipe_detail.html:23
 #: templates/shopping/recipe_list.html:25
 #: templates/shopping/shopping_list.html:25
 msgid "Delete"
@@ -164,6 +167,14 @@ msgid "Your username and password didn't match. Please try again."
 msgstr ""
 "Votre nom d'utilisateur et votre mot de passe ne correspondent pas. Veuillez "
 "essayer à nouveau."
+
+#: templates/shopping/recipe_detail.html:14
+msgid "Action"
+msgstr "Action"
+
+#: templates/shopping/recipe_detail.html:34
+msgid "Add ingredient"
+msgstr "Ajouter l'ingrédient"
 
 #: templates/shopping/recipe_form.html:4
 msgid " Add a new recipe "

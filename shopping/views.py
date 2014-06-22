@@ -10,8 +10,6 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 
-from django.utils.translation import ugettext_lazy as _
-
 class RecipeMixin(object):
     model = Recipe
     fields = ['name', 'servings', 'comment']
