@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load bootstrap %}
+
+{% block content %}
+<div class="jumbotron">
+  <h1>{% trans "Welcome" %}</h1>
+  <p>{% trans "This website allows you to deal with shopping lists easily ! You can create recipes and plan your meals in advance so that your lists are created automatically." %}</p>
+  <p>{% trans "The website is under construction, sorry for any unexpected trouble." %}</p>
+  <p>
+    <a class="btn btn-lg btn-primary" href="/shopping/recipe" role="button">{% trans "Go ahead" %} &raquo;</a>
+  </p>
+</div>
+{% endblock %}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-22 13:34+0200\n"
+"POT-Creation-Date: 2014-06-22 15:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +23,7 @@ msgid "Name"
 msgstr "Nom"
 
 #: models.py:18 models.py:31 templates/shopping/ingredient_list.html:13
-#: templates/shopping/recipe_detail.html:11
+#: templates/shopping/recipe_detail.html:12
 msgid "Category"
 msgstr "Catégorie"
 
@@ -36,7 +36,7 @@ msgid "Units measurement"
 msgstr "Unités de mesure"
 
 #: models.py:39 models.py:70 templates/shopping/ingredient_list.html:12
-#: templates/shopping/recipe_detail.html:12
+#: templates/shopping/recipe_detail.html:13
 msgid "Ingredient"
 msgstr "Ingrédient"
 
@@ -56,16 +56,16 @@ msgstr "Propriétaires"
 msgid "Recipe"
 msgstr "Recette"
 
-#: models.py:60 templates/base.html:45
+#: models.py:60 templates/base.html:25
 msgid "Recipes"
 msgstr "Recettes"
 
-#: models.py:65 models.py:69 templates/base.html:47
+#: models.py:65 models.py:69 templates/base.html:27
 #: templates/shopping/shopping_list.html:12
 msgid "Shopping list"
 msgstr "Listes de course"
 
-#: models.py:72 templates/shopping/recipe_detail.html:13
+#: models.py:72 templates/shopping/recipe_detail.html:14
 msgid "Quantity"
 msgstr "Quantité"
 
@@ -77,17 +77,17 @@ msgstr "Element de recette"
 msgid "Home"
 msgstr "Accueil"
 
-#: templates/base.html:28
+#: templates/base.html:26
+msgid "Ingredients"
+msgstr "Ingredients"
+
+#: templates/base.html:34
 msgid "Logout"
 msgstr "Déconnexion"
 
-#: templates/base.html:32 templates/shopping/login.html:19
+#: templates/base.html:38 templates/shopping/login.html:19
 msgid "Login"
 msgstr "Connexion"
-
-#: templates/base.html:46
-msgid "Ingredients"
-msgstr "Ingredients"
 
 #: templates/object_confirm_delete.html:4
 #, python-format
@@ -123,6 +123,25 @@ msgstr "Ajouter un nouveau %(object_name)s "
 msgid "Save %(object_name)s"
 msgstr "Sauver %(object_name)s"
 
+#: templates/shopping/home.html:7
+msgid "Welcome"
+msgstr "Bienvenue"
+
+#: templates/shopping/home.html:8
+msgid ""
+"This website allows you to deal with shopping lists easily ! You can create "
+"recipes and plan your meals in advance so that your lists are created "
+"automatically."
+msgstr "Ce site vous permet de gérer vos listes de courses facilement. Vous pouvez créer des recettes et prévoir vos repas en avance afin que vos listes de courses soient crées en avance automatiquement."
+
+#: templates/shopping/home.html:9
+msgid "The website is under construction, sorry for any unexpected trouble."
+msgstr "Ce site est en cours de développent, mes excuses pour tous les problèmes que vous pourriez avoir."
+
+#: templates/shopping/home.html:11
+msgid "Go ahead"
+msgstr "Commencer"
+
 #: templates/shopping/ingredient_form.html:4
 msgid " Add a new ingredient "
 msgstr "Ajouter un nouvel ingrédient"
@@ -144,7 +163,7 @@ msgid "Edit"
 msgstr "Editer"
 
 #: templates/shopping/ingredient_list.html:26
-#: templates/shopping/recipe_detail.html:23
+#: templates/shopping/recipe_detail.html:24
 #: templates/shopping/recipe_list.html:25
 #: templates/shopping/shopping_list.html:25
 msgid "Delete"
@@ -168,11 +187,11 @@ msgstr ""
 "Votre nom d'utilisateur et votre mot de passe ne correspondent pas. Veuillez "
 "essayer à nouveau."
 
-#: templates/shopping/recipe_detail.html:14
+#: templates/shopping/recipe_detail.html:15
 msgid "Action"
 msgstr "Action"
 
-#: templates/shopping/recipe_detail.html:34
+#: templates/shopping/recipe_detail.html:46
 msgid "Add ingredient"
 msgstr "Ajouter un ingrédient"
 

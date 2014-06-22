@@ -51,6 +51,7 @@ MIDDLEWARE_CLASSES = (
 )
 
 LOGIN_REDIRECT_URL='/shopping'
+LOGIN_URL='/shopping/accounts/login/'
 
 ROOT_URLCONF = 'ShoppingList.urls'
 

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from django.shortcuts import render, render_to_response, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from shopping.models import Recipe, RecipeElement, Ingredient, RecipeElementForm, ShoppingList
-from django.http import HttpResponseRedirect, HttpResponse, Http404
+from django.http import HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse
 
 from django.contrib.auth.decorators import login_required
@@ -33,19 +33,22 @@ class IngredientMixin(object):
         kwargs.update({'object_name':'Ingredient', 'menu_category': 'ingredient'})
         return kwargs
 
-@login_required(login_url='/shopping/accounts/login/')
+def home(request):
+    return render(request, 'shopping/home.html')
+
+@login_required()
 def recipe_list(request):
     latest_recipe_list = Recipe.objects.filter(owners__in=[request.user.id]).order_by('-creation_date')
     context = {'latest_recipe_list': latest_recipe_list, 'menu_category': 'recipe'}
     return render(request, 'shopping/recipe_list.html', context)
 
-@login_required(login_url='/shopping/accounts/login/')
+@login_required()
 def shopping_list(request):
     latest_shopping_list = ShoppingList.objects.filter(owners__in=[request.user.id]).order_by('-creation_date')
     context = {'latest_shopping_list': latest_shopping_list, 'menu_category': 'shoppinglist'}
     return render(request, 'shopping/shopping_list.html', context)
 
-@login_required(login_url='/shopping/accounts/login/')
+@login_required()
 def ingredient_list(request):
     latest_ingredient_list = Ingredient.objects.order_by('-creation_date')
     context = {'latest_ingredient_list': latest_ingredient_list, 'menu_category': 'ingredient'}
@@ -113,6 +116,7 @@ class IngredientUpdate(IngredientMixin, UpdateView):
 class IngredientDelete(IngredientMixin, DeleteView):
     pass
 
+@login_required()
 def recipe_detail(request, recipe_id):
     recipe = get_object_or_404(Recipe, pk=recipe_id)
     if request.method == 'POST':
@@ -129,6 +133,7 @@ def recipe_detail(request, recipe_id):
                    'form': form}
                   )
 
+@login_required()
 def shoppinglist_detail(request, list_id):
     shoppinglist = get_object_or_404(ShoppingList, pk=list_id)
     if request.method == 'POST':
@@ -154,26 +159,8 @@ def shoppinglist_detail(request, list_id):
                    'form': form}
                   )
 
+@login_required()
 def remove_element(request, recipe_id, element_id):
     element = get_object_or_404(RecipeElement, pk=element_id)
     element.delete()
     return HttpResponseRedirect(reverse('shopping:recipe_detail', args=(recipe_id,)))
-
-def add_element(request, recipe_id):
-    recipe = get_object_or_404(Recipe, pk=recipe_id)
-    return HttpResponse("coin")
-    """try:
-        selected_choice = p.choice_set.get(pk=request.POST['choice'])
-    except (KeyError, Choice.DoesNotExist):
-        # Redisplay the poll voting form.
-        return render(request, 'polls/detail.html', {
-            'poll': p,
-            'error_message': "You didn't select a choice.",
-        })
-    else:
-        selected_choice.votes += 1
-        selected_choice.save()
-        # Always return an HttpResponseRedirect after successfully dealing
-        # with POST data. This prevents data from being posted twice if a
-        # user hits the Back button.
-        return HttpResponseRedirect(reverse('polls:results', args=(p.id,)))"""
