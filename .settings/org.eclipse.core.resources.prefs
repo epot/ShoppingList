@@ -1,0 +1,7 @@
+eclipse.preferences.version=1
+encoding//shopping/admin.py=utf-8
+encoding//shopping/locale/fr/LC_MESSAGES/django.po=UTF-8
+encoding//shopping/models.py=utf-8
+encoding//shopping/templates/base.html=UTF-8
+encoding//shopping/templates/shopping/recipe_detail.html=UTF-8
+encoding//shopping/views.py=utf-8

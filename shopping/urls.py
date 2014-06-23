@@ -1,15 +1,19 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import patterns, include, url
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
+
+from social.backends.utils import load_backends
 
 from shopping import views
 
 urlpatterns = patterns('',
     url(r'^accounts/login/$', 'django.contrib.auth.views.login', {
-        'template_name': 'shopping/login.html'
+        'template_name': 'shopping/login.html',
+        'extra_context':{'available_backends': load_backends(settings.AUTHENTICATION_BACKENDS)}
     }),
     (r'^accounts/logout/$', 'django.contrib.auth.views.logout',{'next_page': '/shopping/accounts/login'}),
     
-    
+    url(r'', include('social.apps.django_app.urls', namespace='social')),
     url(r'^$', views.home, name='home'),
     url(r'^recipe/$', views.recipe_list, name='recipe_list'),
     # ex: /recipe/5/

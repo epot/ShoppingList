@@ -12,4 +12,5 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', lambda r : HttpResponseRedirect('shopping/')),
     url(r'^shopping/', include('shopping.urls', namespace='shopping')),
+    url('', include('social.apps.django_app.urls', namespace='social'))
 )

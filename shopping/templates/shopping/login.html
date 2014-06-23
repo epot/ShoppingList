@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load backend_utils %}
 
 {% block title %}{% trans "Login page" %}{% endblock %}
 
 {% block content %}
-
+  <div class="page-header">
+    <h1>{% trans "Login" %}</h1>
     {% if form.errors %}
         <p>{% trans "Your username and password didn't match. Please try again." %}</p>
     {% endif %}
@@ -19,5 +21,16 @@
        <input type="submit" value="{% trans "Login" %}" class="btn btn-primary"/>
        <input type="hidden" name="next" value="{{ next }}" />
    </form>
+  </div>
+  
+  
+  <h3>{% trans "Or use one of your following accounts:" %}</h3>  
+  
+  {% for sublist in available_backends|social_backends %}
+    {% for name, backend in sublist %}
+      {% associated backend %}
+        <a href="/login/{{ name|icon_name }}"> <img src="{{STATIC_URL}}/images/providers/{{ name|icon_name }}.png"/></a>
+    {% endfor %}
+  {% endfor %}
 
 {% endblock %}
