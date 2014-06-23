@@ -26,11 +26,7 @@
   
   <h3>{% trans "Or use one of your following accounts:" %}</h3>  
   
-  {% for sublist in available_backends|social_backends %}
-    {% for name, backend in sublist %}
-      {% associated backend %}
-        <a href="/login/{{ name|icon_name }}"> <img src="{{STATIC_URL}}/images/providers/{{ name|icon_name }}.png"/></a>
-    {% endfor %}
-  {% endfor %}
+  <a href="/login/google"> <img src="{{STATIC_URL}}/images/providers/google.png"/></a>
+  <a href="/login/yahoo"> <img src="{{STATIC_URL}}/images/providers/yahoo.png"/></a>
 
 {% endblock %}

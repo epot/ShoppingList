@@ -121,6 +121,7 @@ STATICFILES_DIRS = (
 
 AUTHENTICATION_BACKENDS = (
       'social.backends.google.GoogleOpenId',
+      'social.backends.google.GoogleOAuth',
       'social.backends.yahoo.YahooOpenId',
       'django.contrib.auth.backends.ModelBackend',
   )
