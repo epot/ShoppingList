@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-22 15:04+0200\n"
+"POT-Creation-Date: 2014-06-23 22:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -85,7 +85,8 @@ msgstr "Ingrédients"
 msgid "Logout"
 msgstr "Déconnexion"
 
-#: templates/base.html:38 templates/shopping/login.html:19
+#: templates/base.html:38 templates/shopping/login.html:9
+#: templates/shopping/login.html.py:21
 msgid "Login"
 msgstr "Connexion"
 
@@ -132,11 +133,16 @@ msgid ""
 "This website allows you to deal with shopping lists easily ! You can create "
 "recipes and plan your meals in advance so that your lists are created "
 "automatically."
-msgstr "Ce site vous permet de gérer vos listes de courses facilement. Vous pouvez créer des recettes et prévoir vos repas en avance afin que vos listes de courses soient crées en avance automatiquement."
+msgstr ""
+"Ce site vous permet de gérer vos listes de courses facilement. Vous pouvez "
+"créer des recettes et prévoir vos repas en avance afin que vos listes de "
+"courses soient crées en avance automatiquement."
 
 #: templates/shopping/home.html:9
 msgid "The website is under construction, sorry for any unexpected trouble."
-msgstr "Ce site est en cours de développent, mes excuses pour tous les problèmes que vous pourriez avoir."
+msgstr ""
+"Ce site est en cours de développent, mes excuses pour tous les problèmes que "
+"vous pourriez avoir."
 
 #: templates/shopping/home.html:11
 msgid "Go ahead"
@@ -177,15 +183,19 @@ msgstr "Pas d'ingrédient disponible"
 msgid "Add new ingredient"
 msgstr "Ajouter un nouvel ingrédient"
 
-#: templates/shopping/login.html:4
+#: templates/shopping/login.html:5
 msgid "Login page"
 msgstr "Page de connexion"
 
-#: templates/shopping/login.html:9
+#: templates/shopping/login.html:11
 msgid "Your username and password didn't match. Please try again."
 msgstr ""
 "Votre nom d'utilisateur et votre mot de passe ne correspondent pas. Veuillez "
 "essayer à nouveau."
+
+#: templates/shopping/login.html:27
+msgid "Or use one of your following accounts:"
+msgstr "Ou utilisez l'un de vos comptes suivant:"
 
 #: templates/shopping/recipe_detail.html:15
 msgid "Action"
