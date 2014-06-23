@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'bootstrapform',
     'shopping',
+    'social.apps.django_app.me',
 )
 
 MIDDLEWARE_CLASSES = (
