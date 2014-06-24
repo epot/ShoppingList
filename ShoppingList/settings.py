@@ -120,7 +120,7 @@ STATICFILES_DIRS = (
 )
 
 AUTHENTICATION_BACKENDS = (
-      'social.backends.google.GoogleOAuth',
+      'social.backends.google.GoogleOAuth2',
       'social.backends.yahoo.YahooOpenId',
       'django.contrib.auth.backends.ModelBackend',
   )
@@ -130,3 +130,8 @@ SOCIAL_AUTH_STORAGE = 'social.apps.django_app.default.models.DjangoStorage'
 SOCIAL_AUTH_GOOGLE_OAUTH_SCOPE = [
     'https://www.googleapis.com/auth/userinfo.profile'
 ]
+
+if 'GOOGLE_OAUTH2_CLIENT_ID' in os.environ:
+    GOOGLE_OAUTH2_CLIENT_ID = os.environ['GOOGLE_OAUTH2_CLIENT_ID']
+if 'GOOGLE_OAUTH2_CLIENT_SECRET' in os.environ:
+    GOOGLE_OAUTH2_CLIENT_SECRET = os.environ['GOOGLE_OAUTH2_CLIENT_SECRET']
