@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     (r'^accounts/logout/$', 'django.contrib.auth.views.logout',{'next_page': '/shopping/accounts/login'}),
     
     url(r'', include('social.apps.django_app.urls', namespace='social')),
+
     url(r'^$', views.home, name='home'),
     url(r'^recipe/$', views.recipe_list, name='recipe_list'),
     # ex: /recipe/5/
