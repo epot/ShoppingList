@@ -10,6 +10,8 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 
+from shopping.utils.decorators import user_owns_recipe, user_owns_shopping_list
+
 class RecipeMixin(object):
     model = Recipe
     fields = ['name', 'servings', 'comment']
@@ -116,7 +118,7 @@ class IngredientUpdate(IngredientMixin, UpdateView):
 class IngredientDelete(IngredientMixin, DeleteView):
     pass
 
-@login_required()
+@user_owns_recipe()
 def recipe_detail(request, recipe_id):
     recipe = get_object_or_404(Recipe, pk=recipe_id)
     if request.method == 'POST':
@@ -133,7 +135,7 @@ def recipe_detail(request, recipe_id):
                    'form': form}
                   )
 
-@login_required()
+@user_owns_shopping_list()
 def shoppinglist_detail(request, list_id):
     shoppinglist = get_object_or_404(ShoppingList, pk=list_id)
     if request.method == 'POST':
@@ -159,7 +161,7 @@ def shoppinglist_detail(request, list_id):
                    'form': form}
                   )
 
-@login_required()
+@user_owns_recipe()
 def remove_element(request, recipe_id, element_id):
     element = get_object_or_404(RecipeElement, pk=element_id)
     element.delete()
