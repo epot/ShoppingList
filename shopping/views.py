@@ -134,6 +134,21 @@ def recipe_detail(request, recipe_id):
                    'form': form}
                   )
 
+def merge_details(details):
+    new_details = {}
+    for detail in details:
+        unit = detail.unit_measurement
+        if unit in new_details:
+            new_details[unit] += detail.quantity
+        else:
+            new_details[unit] = detail.quantity
+    new_details_str = ''
+    for unit, quantity in new_details.iteritems():
+        if new_details_str:
+            new_details_str += ' + '
+        new_details_str += u"{} {}".format(quantity, unit)
+    return new_details_str
+
 @user_owns_shopping_list()
 def shoppinglist_detail(request, list_id):
     shoppinglist = get_object_or_404(ShoppingList, pk=list_id)
@@ -152,9 +167,8 @@ def shoppinglist_detail(request, list_id):
     
     new_elements = []
     for ingredient in ingredients:
-        gna = [y  for y in elements if y.ingredient==ingredient]
-        details = [y.details()  for y in gna]
-        new_elements.append([gna[0].ingredient.category.name, gna[0].ingredient.name, '+'.join(details)])
+        same_ingredients = [y for y in elements if y.ingredient==ingredient]
+        new_elements.append([same_ingredients[0].ingredient.category.name, same_ingredients[0].ingredient.name, merge_details(same_ingredients)])
     
     return render(request, 'shopping/shoppinglist_detail.html', 
                   {'shoppinglist': shoppinglist, 
