@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
 
 from django.shortcuts import render, get_object_or_404
-from shopping.models import Recipe, RecipeElement, Ingredient, RecipeElementForm, ShoppingList
+from django.db.models import Q
 from django.http import HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse
-
 from django.contrib.auth.decorators import login_required
-
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 
 from shopping.utils.decorators import user_owns_recipe, user_owns_shopping_list
+from shopping.models import Recipe, RecipeElement, Ingredient, RecipeElementForm, ShoppingList
 
 class RecipeMixin(object):
     model = Recipe
@@ -140,15 +139,17 @@ def shoppinglist_detail(request, list_id):
     shoppinglist = get_object_or_404(ShoppingList, pk=list_id)
     if request.method == 'POST':
         form = RecipeElementForm(request.POST)
+        print form
         if form.is_valid():
             form.save()
     else:
         data = {'shoppinglist': shoppinglist.id}
         form = RecipeElementForm(initial=data)
 
-    elements = RecipeElement.objects.filter(recipe__in=shoppinglist.recipes.all())
+    elements = RecipeElement.objects.filter(Q(recipe__in=shoppinglist.recipes.all()) | Q(shoppinglist=shoppinglist))
     
     ingredients = set(map(lambda x:x.ingredient, elements))
+    
     new_elements = []
     for ingredient in ingredients:
         gna = [y  for y in elements if y.ingredient==ingredient]
