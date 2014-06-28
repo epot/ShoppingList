@@ -33,7 +33,7 @@ class Ingredient(models.Model):
     creation_date = models.DateTimeField(default=datetime.now(), editable=False)
     
     def __unicode__(self):
-        return "{} ({})".format(self.name, self.category)
+        return u"{} ({})".format(self.name, self.category)
 
     class Meta:
         verbose_name = _('Ingredient')
@@ -72,10 +72,10 @@ class RecipeElement(models.Model):
     quantity = models.IntegerField(verbose_name=_("Quantity"))
     
     def __unicode__(self):
-        return "{} {} {}".format(self.quantity, self.unit_measurement, self.ingredient)
+        return u"{} {} {}".format(self.quantity, self.unit_measurement, self.ingredient)
 
     def details(self):
-        return "{} {}".format(self.quantity, self.unit_measurement)
+        return u"{} {}".format(self.quantity, self.unit_measurement)
 
     class Meta:
         verbose_name = _('Recipe element')
