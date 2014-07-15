@@ -15,6 +15,7 @@ class Category(models.Model):
         return self.name
     
     class Meta:
+        ordering = ['name']
         verbose_name = _('Category')
 
 class UnitMeasurement(models.Model):
@@ -24,6 +25,7 @@ class UnitMeasurement(models.Model):
         return self.name
 
     class Meta:
+        ordering = ['name']
         verbose_name = _('Unit measurement')
         verbose_name_plural = _('Units measurement')
 
@@ -50,6 +52,7 @@ class Recipe(models.Model):
         return self.name
 
     class Meta:
+        ordering = ['name']
         verbose_name = _('Recipe')
 
 class IngredientForm(ModelForm):
