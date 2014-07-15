@@ -17,7 +17,7 @@
     <tbody>
       {% for ingredient in latest_ingredient_list %}
         <tr>
-          <td><a href="/shopping/ingredient/{{ ingredient.id }}/">{{ ingredient.name }}</a></td>
+          <td><a href="/shopping/ingredient/edit/{{ ingredient.id }}">{{ ingredient.name }}</a></td>
           <td>{{ ingredient.category }}</td>
           <td>
             <div class="btn-toolbar">
