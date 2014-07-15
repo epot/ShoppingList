@@ -36,6 +36,7 @@ class Ingredient(models.Model):
         return u"{} ({})".format(self.name, self.category)
 
     class Meta:
+        ordering = ['name']
         verbose_name = _('Ingredient')
 
 class Recipe(models.Model):
