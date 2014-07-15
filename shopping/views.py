@@ -51,7 +51,7 @@ def shopping_list(request):
 
 @login_required()
 def ingredient_list(request):
-    latest_ingredient_list = Ingredient.objects.order_by('-creation_date')
+    latest_ingredient_list = Ingredient.objects.order_by('name')
     context = {'latest_ingredient_list': latest_ingredient_list, 'menu_category': 'ingredient'}
     return render(request, 'shopping/ingredient_list.html', context)
 
