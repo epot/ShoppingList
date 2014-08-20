@@ -21,7 +21,14 @@
           <td>{{ element.ingredient.category.name }}</td>
           <td>{{ element.ingredient.name }}</td>
           <td>{{ element.details }}</td>
-          <td><a href="/shopping/recipe/{{ recipe.id }}/remove_element/{{ element.id }}"><i class="glyphicon glyphicon-remove button-tooltip" data-toggle="tooltip" title="{% trans "Delete" %}"></i></a></td>
+          <td>
+            <div class="btn-toolbar">
+              <div class="btn-group">
+                <a href="/shopping/recipe/{{ recipe.id }}/element/edit/{{ element.id }}"><i class="glyphicon glyphicon-edit button-tooltip" data-toggle="tooltip" title="{% trans "Edit" %}"></i></a>
+                <a href="/shopping/recipe/{{ recipe.id }}/element/remove/{{ element.id }}"><i class="glyphicon glyphicon-remove button-tooltip" data-toggle="tooltip" title="{% trans "Delete" %}"></i></a>
+              </div>
+            </div>
+          </td>
         <tr>
       {% endfor %}
     </tbody>

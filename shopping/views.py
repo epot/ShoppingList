@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q
 from django.http import HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse
@@ -16,7 +16,7 @@ class RecipeMixin(object):
     fields = ['name', 'servings', 'comment']
     success_url = reverse_lazy('shopping:recipe_list')
     def get_context_data(self, **kwargs):
-        kwargs.update({'object_name':'Recipe', 'menu_category': 'recipe'})
+        kwargs.update({'object_name':'Recipe'})
         return kwargs
 
 class ShoppingListMixin(object):
@@ -24,14 +24,14 @@ class ShoppingListMixin(object):
     fields = ['name', 'recipes']
     success_url = reverse_lazy('shopping:list_list')
     def get_context_data(self, **kwargs):
-        kwargs.update({'object_name':'Shopping List', 'menu_category': 'shoppinglist'})
+        kwargs.update({'object_name':'Shopping List'})
         return kwargs
 
 class IngredientMixin(object):
     model = Ingredient
     success_url = reverse_lazy('shopping:ingredient_list')
     def get_context_data(self, **kwargs):
-        kwargs.update({'object_name':'Ingredient', 'menu_category': 'ingredient'})
+        kwargs.update({'object_name':'Ingredient'})
         return kwargs
 
 def home(request):
@@ -40,19 +40,19 @@ def home(request):
 @login_required()
 def recipe_list(request):
     latest_recipe_list = Recipe.objects.filter(owners__in=[request.user.id]).order_by('-creation_date')
-    context = {'latest_recipe_list': latest_recipe_list, 'menu_category': 'recipe'}
+    context = {'latest_recipe_list': latest_recipe_list}
     return render(request, 'shopping/recipe_list.html', context)
 
 @login_required()
 def shopping_list(request):
     latest_shopping_list = ShoppingList.objects.filter(owners__in=[request.user.id]).order_by('-creation_date')
-    context = {'latest_shopping_list': latest_shopping_list, 'menu_category': 'shoppinglist'}
+    context = {'latest_shopping_list': latest_shopping_list}
     return render(request, 'shopping/shopping_list.html', context)
 
 @login_required()
 def ingredient_list(request):
     latest_ingredient_list = Ingredient.objects.order_by('name')
-    context = {'latest_ingredient_list': latest_ingredient_list, 'menu_category': 'ingredient'}
+    context = {'latest_ingredient_list': latest_ingredient_list}
     return render(request, 'shopping/ingredient_list.html', context)
 
 class RecipeCreate(RecipeMixin, CreateView):
@@ -117,6 +117,7 @@ class IngredientUpdate(IngredientMixin, UpdateView):
 class IngredientDelete(IngredientMixin, DeleteView):
     pass
 
+
 @user_owns_recipe()
 def recipe_detail(request, recipe_id):
     recipe = get_object_or_404(Recipe, pk=recipe_id)
@@ -177,7 +178,26 @@ def shoppinglist_detail(request, list_id):
                   )
 
 @user_owns_recipe()
-def remove_element(request, recipe_id, element_id):
-    element = get_object_or_404(RecipeElement, pk=element_id)
+def element_edit(request, recipe_id, recipeelement_id):
+    element = get_object_or_404(RecipeElement, pk=recipeelement_id)
+    
+    form = RecipeElementForm(request.POST or None, instance=element)
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect(reverse('shopping:recipe_detail', args=(recipe_id,)))
+        
+    return render(request, 'shopping/recipe_detail.html', 
+                  {'recipe': element.recipe, 
+                   'recipeelement': element, 
+                   'form': form}
+                  )
+
+@user_owns_recipe()
+def element_remove(request, recipe_id, recipeelement_id):
+    element = get_object_or_404(RecipeElement, pk=recipeelement_id)
+    
+    if request.user not in element.recipe.owners.all():
+        raise Http404
+
     element.delete()
     return HttpResponseRedirect(reverse('shopping:recipe_detail', args=(recipe_id,)))
