@@ -28,6 +28,10 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">  
         {% if user.is_authenticated %}
+          
+          {% if user.is_superuser %}
+          <li><a href="/admin" target="_blank">{% trans "admin" %}</a></li>
+          {% endif %}
           <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown">{% if user.first_name %}{{ user.first_name }}{% else %}{{ user.username }}{% endif %}<b class="caret"></b></a>
               <ul class="dropdown-menu">
