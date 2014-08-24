@@ -27,7 +27,13 @@ urlpatterns = patterns('',
     # ex: /recipe/5/addelement/
     url(r'^recipe/(?P<recipe_id>\d+)/element/edit/(?P<recipeelement_id>\d+)/$', views.element_edit, name='element_edit'),
     url(r'^recipe/(?P<recipe_id>\d+)/element/remove/(?P<recipeelement_id>\d+)/$', views.element_remove, name='element_remove'),
-                       
+    
+    
+    url(r'^meal/$', views.meal_list, name='meal_list'),
+    url(r'^meal/new$', views.meal_new, name='meal_new'),
+    #url(r'^meal/edit/(?P<pk>\d+)$', views.meal_edit, name='meal_edit'),
+    #url(r'^meal/delete/(?P<pk>\d+)$', views.meal_delete, name='meal_delete'),
+
     url(r'^list/$', views.shopping_list, name='list_list'),
     url(r'^list/(?P<list_id>\d+)/$', views.shoppinglist_detail, name='shoppinglist_detail'),
     url(r'^list/new$', login_required(views.ShoppingListCreate.as_view()), name='list_new'),

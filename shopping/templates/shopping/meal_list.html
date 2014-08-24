@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "My meals" %}{% endblock %}
+
+{% block content %}
+
+<div id='calendar'></div>
+
+<a href="{% url "shopping:meal_new" %}" class="btn btn-primary">{% trans "Add new meal" %}</a>
+
+{% endblock %}

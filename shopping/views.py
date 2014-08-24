@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from django.http import HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse
@@ -201,3 +201,12 @@ def element_remove(request, recipe_id, recipeelement_id):
 
     element.delete()
     return HttpResponseRedirect(reverse('shopping:recipe_detail', args=(recipe_id,)))
+
+@login_required()
+def meal_list(request):
+    return render(request, 'shopping/meal_list.html')
+
+@login_required()
+def meal_new(request):
+    return render(request, 'shopping/meal_new.html')
+

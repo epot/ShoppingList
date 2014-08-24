@@ -9,7 +9,12 @@
   <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/bootstrap-responsive.min.css"/> 
   <script type="text/javascript" src="{{STATIC_URL}}js/jquery-1.11.1.js"></script>
   <script type="text/javascript" src="{{STATIC_URL}}js/bootstrap.min.js"></script>
-    <title>{% block title %}Shopping list{% endblock %}</title>
+  
+  <link rel='stylesheet' href='{{STATIC_URL}}css/fullcalendar/fullcalendar.css' />
+  <script src='{{STATIC_URL}}js/jquery.min.js'></script>
+  <script src='{{STATIC_URL}}js/moment.min.js'></script>
+  <script src='{{STATIC_URL}}js/fullcalendar/fullcalendar.js'></script>
+  <title>{% block title %}Shopping list{% endblock %}</title>
 </head>
 
 <body>
@@ -24,7 +29,8 @@
         {% load tags %}
           <li class="{% active current_path "^/shopping/recipe" %}"><a href="/shopping/recipe">{% trans "Recipes" %}</a></li>
           <li class="{% active current_path "^/shopping/ingredient" %}"><a href="/shopping/ingredient">{% trans "Ingredients" %}</a></li>
-          <li class="{% active current_path "^/shopping/list" %}"><a href="/shopping/list">{% trans "Shopping list" %}</a></li>
+          <li class="{% active current_path "^/shopping/list" %}"><a href="/shopping/list">{% trans "Shopping lists" %}</a></li>
+          <li class="{% active current_path "^/shopping/meal" %}"><a href="/shopping/meal">{% trans "Meals" %}</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">  
         {% if user.is_authenticated %}
@@ -62,5 +68,9 @@
 <script type="text/javascript">
   $(document).ready(function() {
     $('.button-tooltip').tooltip();
+    
+    $('#calendar').fullCalendar({
+      // put your options and callbacks here
+  	})
   });
 </script>

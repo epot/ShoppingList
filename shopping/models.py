@@ -88,4 +88,20 @@ class RecipeElementForm(ModelForm):
     class Meta: 
         model = RecipeElement
         widgets = {'recipe': HiddenInput(), 'shoppinglist': HiddenInput()}
-       
+
+MEAL_CATEGORY_CHOICES = (
+    ('bre', _('Breakfast')),
+    ('lun', _('Lunch')),
+    ('din', _('Dinner')),
+)
+class Meal(models.Model):
+    recipe = models.ForeignKey(Recipe, verbose_name=_("Recipe"))
+    servings = models.IntegerField(verbose_name=_("Servings"))
+    category = models.CharField(max_length=3, choices=MEAL_CATEGORY_CHOICES)
+    meal_date = models.DateField()
+    comment = models.TextField(max_length=4000, blank=True, null=True, verbose_name=_("Comment"))
+    owners = models.ManyToManyField(User, verbose_name=_("Owners"))
+
+    class Meta:
+        verbose_name = _('Meal')
+        verbose_name_plural = _('Meals')
