@@ -70,7 +70,15 @@
     $('.button-tooltip').tooltip();
     
     $('#calendar').fullCalendar({
-      // put your options and callbacks here
+      header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,agendaWeek'
+			},
+	  timeFormat: {
+          agenda: 'H' //h:mm{ - h:mm}'
+      },
+      events: '/shopping/meal/',
   	})
   });
 </script>

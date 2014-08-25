@@ -1,15 +1,18 @@
 # -*- coding: utf-8 -*-
 
+import simplejson
+import datetime
+
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
-from django.http import HttpResponseRedirect, Http404
+from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 
 from shopping.utils.decorators import user_owns_recipe, user_owns_shopping_list
-from shopping.models import Recipe, RecipeElement, Ingredient, RecipeElementForm, ShoppingList
+from shopping.models import Recipe, RecipeElement, Ingredient, RecipeElementForm, ShoppingList, Meal
 
 class RecipeMixin(object):
     model = Recipe
@@ -204,9 +207,28 @@ def element_remove(request, recipe_id, recipeelement_id):
 
 @login_required()
 def meal_list(request):
+    if request.is_ajax():
+        return get_monthly_meals(request.GET['start'], request.GET['end'])
+
     return render(request, 'shopping/meal_list.html')
 
 @login_required()
 def meal_new(request):
     return render(request, 'shopping/meal_new.html')
 
+def get_monthly_meals(start, end):
+    meals=[]  
+    
+    meals_objects = Meal.objects.filter(meal_date__gte=start, meal_date__lte=end)
+    
+    for meal_object in meals_objects:
+        meal_times = meal_object.get_lunch_times()
+        
+        meals.append({
+          'title': u'{}: {}'.format(meal_object.get_category_display(), meal_object.recipe.name),
+          'start': meal_times[0].strftime("%Y-%m-%d %H:%m"),
+          'end': meal_times[1].strftime("%Y-%m-%d %H:%m")
+          })
+        
+
+    return HttpResponse(simplejson.dumps(meals), content_type='application/javascript')

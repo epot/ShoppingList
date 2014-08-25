@@ -79,7 +79,7 @@ msgstr "Petit déjeuner"
 
 #: models.py:94
 msgid "Lunch"
-msgstr "Déjeuneur"
+msgstr "Déjeuner"
 
 #: models.py:95
 msgid "Dinner"

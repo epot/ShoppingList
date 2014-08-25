@@ -14,3 +14,4 @@ pystache==0.5.4
 static==1.0.2
 wsgiref==0.1.2
 python-social-auth==0.1.26
+simplejson=3.6.3

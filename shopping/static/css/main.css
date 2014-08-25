@@ -6,3 +6,7 @@ body {
 .row .btn {
     margin-top: 20px;
 }
+
+.fc-event-time{
+   display : none;
+}
