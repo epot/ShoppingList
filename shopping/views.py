@@ -12,7 +12,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 
 from shopping.utils.decorators import user_owns_recipe, user_owns_shopping_list
-from shopping.models import Recipe, RecipeElement, Ingredient, RecipeElementForm, ShoppingList, Meal
+from shopping.models import Recipe, RecipeElement, Ingredient, RecipeElementForm, ShoppingList, Meal, MealForm
 
 class RecipeMixin(object):
     model = Recipe
@@ -207,14 +207,18 @@ def element_remove(request, recipe_id, recipeelement_id):
 
 @login_required()
 def meal_list(request):
+    form = MealForm(request.POST or None)
+    
+    if request.method == 'POST':
+        if form.is_valid():
+            meal = form.save()
+            meal.owners = [request.user]
+            meal.save()
+    
     if request.is_ajax():
         return get_monthly_meals(request.user, request.GET['start'], request.GET['end'])
 
-    return render(request, 'shopping/meal_list.html')
-
-@login_required()
-def meal_new(request):
-    return render(request, 'shopping/meal_new.html')
+    return render(request, 'shopping/meal_list.html', {'form': form})
 
 def get_monthly_meals(user, start, end):
     meals=[]  
@@ -225,7 +229,7 @@ def get_monthly_meals(user, start, end):
         meal_times = meal_object.get_lunch_times()
         
         meals.append({
-          'title': u'{}: {}'.format(meal_object.get_category_display(), meal_object.recipe.name),
+          'title': str(meal_object),
           'start': meal_times[0].strftime("%Y-%m-%d %H:%m"),
           'end': meal_times[1].strftime("%Y-%m-%d %H:%m")
           })

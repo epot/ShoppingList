@@ -103,6 +103,9 @@ class Meal(models.Model):
     comment = models.TextField(max_length=4000, blank=True, null=True, verbose_name=_("Comment"))
     owners = models.ManyToManyField(User, verbose_name=_("Owners"))
     
+    def __unicode__(self):
+        return u'{}: {}'.format(self.get_category_display(), self.recipe.name)
+
     def get_lunch_times(self):
         if self.category == "bre":
             lunch_time = datetime.time(8, 0)
@@ -118,3 +121,9 @@ class Meal(models.Model):
     class Meta:
         verbose_name = _('Meal')
         verbose_name_plural = _('Meals')
+        
+class MealForm(ModelForm):
+    class Meta: 
+        model = Meal
+        widgets = {'owners': HiddenInput()}
+        exclude = ['owners']

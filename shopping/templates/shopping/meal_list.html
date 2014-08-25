@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load bootstrap %}
 
 {% block title %}{% trans "My meals" %}{% endblock %}
 
@@ -7,6 +8,52 @@
 
 <div id='calendar'></div>
 
-<a href="{% url "shopping:meal_new" %}" class="btn btn-primary">{% trans "Add new meal" %}</a>
+<button class="btn btn-primary" data-toggle="modal" data-target="#createMealModal">
+  {% trans "Add new meal" %}
+</button>
 
+<!-- Modal -->
+<div class="modal fade" id="createMealModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">{% trans "Add new meal" %}</h4>
+      </div>
+      <form class="form-inline" role="form" action="" method="post">
+        <div class="modal-body">
+            {% csrf_token %} 
+            
+            {{ form|bootstrap }}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">{% trans "Add meal" %}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {    
+    $('#calendar').fullCalendar({
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek'
+      },
+    timeFormat: {
+          agenda: 'H' //h:mm{ - h:mm}'
+      },
+      events: '/shopping/meal/',
+      dayRender: function(date, element, view){
+        element.bind('dblclick', function() {
+          $("#createMealModal").modal("show");
+        });
+      }
+    })
+  });
+</script>
 {% endblock %}
+

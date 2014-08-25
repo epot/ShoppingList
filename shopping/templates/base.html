@@ -68,17 +68,5 @@
 <script type="text/javascript">
   $(document).ready(function() {
     $('.button-tooltip').tooltip();
-    
-    $('#calendar').fullCalendar({
-      header: {
-				left: 'prev,next today',
-				center: 'title',
-				right: 'month,agendaWeek'
-			},
-	  timeFormat: {
-          agenda: 'H' //h:mm{ - h:mm}'
-      },
-      events: '/shopping/meal/',
-  	})
   });
 </script>

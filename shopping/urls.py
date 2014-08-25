@@ -30,7 +30,6 @@ urlpatterns = patterns('',
     
     
     url(r'^meal/$', views.meal_list, name='meal_list'),
-    url(r'^meal/new$', views.meal_new, name='meal_new'),
     #url(r'^meal/edit/(?P<pk>\d+)$', views.meal_edit, name='meal_edit'),
     #url(r'^meal/delete/(?P<pk>\d+)$', views.meal_delete, name='meal_delete'),
 
