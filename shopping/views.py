@@ -208,7 +208,7 @@ def element_remove(request, recipe_id, recipeelement_id):
 @login_required()
 def meal_list(request):
     if request.is_ajax():
-        return get_monthly_meals(request.GET['start'], request.GET['end'])
+        return get_monthly_meals(request.user, request.GET['start'], request.GET['end'])
 
     return render(request, 'shopping/meal_list.html')
 
@@ -216,10 +216,10 @@ def meal_list(request):
 def meal_new(request):
     return render(request, 'shopping/meal_new.html')
 
-def get_monthly_meals(start, end):
+def get_monthly_meals(user, start, end):
     meals=[]  
     
-    meals_objects = Meal.objects.filter(meal_date__gte=start, meal_date__lte=end)
+    meals_objects = Meal.objects.filter(meal_date__gte=start, meal_date__lte=end, owners__in=[user.id])
     
     for meal_object in meals_objects:
         meal_times = meal_object.get_lunch_times()
