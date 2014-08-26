@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import simplejson
-import datetime
 
+from django import forms
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from django.http import HttpResponseRedirect, HttpResponse, Http404
@@ -218,6 +218,7 @@ def meal_list(request):
     if request.is_ajax():
         return get_monthly_meals(request.user, request.GET['start'], request.GET['end'])
 
+    form.fields['recipe'] = forms.ModelChoiceField(queryset=Recipe.objects.filter(owners__in=[request.user.id]))
     return render(request, 'shopping/meal_list.html', {'form': form})
 
 def get_monthly_meals(user, start, end):
@@ -236,3 +237,13 @@ def get_monthly_meals(user, start, end):
         
 
     return HttpResponse(simplejson.dumps(meals), content_type='application/javascript')
+
+@login_required()
+def recipe_details(request, recipe_id):
+    recipe = get_object_or_404(Recipe, pk=recipe_id)
+    
+    if request.user not in recipe.owners.all():
+        raise Http404
+    
+    return HttpResponse(simplejson.dumps({'servings': recipe.servings}), content_type='application/json')
+

@@ -22,6 +22,7 @@ urlpatterns = patterns('',
     
     url(r'^recipe/new$', login_required(views.RecipeCreate.as_view()), name='recipe_new'),
     url(r'^recipe/edit/(?P<pk>\d+)$', login_required(views.RecipeUpdate.as_view()), name='recipe_edit'),
+    url(r'^recipe/details/(?P<recipe_id>\d+)$', views.recipe_details, name='recipe_details'),
     url(r'^recipe/delete/(?P<pk>\d+)$', login_required(views.RecipeDelete.as_view()), name='recipe_delete'),
     
     # ex: /recipe/5/addelement/

@@ -20,7 +20,7 @@
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="myModalLabel">{% trans "Add new meal" %}</h4>
       </div>
-      <form class="form-inline" role="form" action="" method="post">
+      <form class="form" role="form" action="" method="post">
         <div class="modal-body">
             {% csrf_token %} 
             
@@ -53,6 +53,19 @@
         });
       }
     })
+  });
+  
+  $( "#id_recipe" ).change(function() {
+    $.ajax({
+      url: '/shopping/recipe/details/'+ $( "#id_recipe" ).val(),
+      dataType: 'json', 
+    })
+      .done(function( data ) {
+        $( "#id_servings" ).val(data['servings']);
+      })
+      .fail(function(request, status, error) {
+        console.log(request + '/' + status + '/' + error)
+      });
   });
 </script>
 {% endblock %}
