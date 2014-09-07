@@ -58,6 +58,7 @@ class Recipe(models.Model):
 class IngredientForm(ModelForm):
     class Meta: 
         model = Ingredient
+        fields = '__all__'
 
 class ShoppingList(models.Model):
     name = models.CharField(max_length=200, verbose_name=_("Name"))
@@ -87,6 +88,7 @@ class RecipeElement(models.Model):
 class RecipeElementForm(ModelForm):
     class Meta: 
         model = RecipeElement
+        fields = '__all__'
         widgets = {'recipe': HiddenInput(), 'shoppinglist': HiddenInput()}
 
 class Meal(models.Model):
