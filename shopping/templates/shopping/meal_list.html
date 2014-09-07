@@ -37,7 +37,9 @@
 
 <script type="text/javascript">
   $(function() {
-         $(".datepicker").datepicker();
+         $(".datepicker").datepicker({
+           dateFormat: "dd-mm-yy",
+         });
   });
 
   $(document).ready(function() {    
@@ -51,11 +53,11 @@
           agenda: 'H' //h:mm{ - h:mm}'
       },
       events: '/shopping/meal/',
-      dayRender: function(date, element, view){
-        element.bind('dblclick', function() {
-          $("#createMealModal").modal("show");
-        });
-      }
+      dayClick: function(date, jsEvent, view) {
+        $("#id_meal_date").val(date.format());
+        $("#createMealModal").modal("show");
+  	  }
+      
     })
   });
   

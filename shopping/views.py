@@ -158,7 +158,6 @@ def shoppinglist_detail(request, list_id):
     shoppinglist = get_object_or_404(ShoppingList, pk=list_id)
     if request.method == 'POST':
         form = RecipeElementForm(request.POST)
-        print form
         if form.is_valid():
             form.save()
     else:
