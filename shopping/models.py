@@ -3,7 +3,7 @@
 import datetime 
 
 from django.db import models
-from django.forms import ModelForm, HiddenInput
+from django.forms import ModelForm, HiddenInput, DateInput
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
@@ -127,5 +127,5 @@ class Meal(models.Model):
 class MealForm(ModelForm):
     class Meta: 
         model = Meal
-        widgets = {'owners': HiddenInput()}
+        widgets = {'owners': HiddenInput(), 'meal_date': DateInput(attrs={'class':'datepicker'}),}
         exclude = ['owners']
