@@ -13,14 +13,14 @@
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="createMealModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="create-meal-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="myModalLabel">{% trans "Add new meal" %}</h4>
       </div>
-      <form class="form" role="form" action="" method="post">
+      <form class="form" id="create-meal-form" role="form" action="" method="post">
         <div class="modal-body">
             {% csrf_token %} 
             
@@ -40,6 +40,9 @@
          $(".datepicker").datepicker({
            dateFormat: "dd/mm/yy",
          });
+         {% if form.errors %}
+         $("#create-meal-modal").modal("show");
+		 {% endif %}
   });
 
   $(document).ready(function() {    
@@ -55,7 +58,7 @@
       events: '/shopping/meal/',
       dayClick: function(date, jsEvent, view) {
         $("#id_meal_date").val(moment(date).format('DD/MM/YYYY'));
-        $("#createMealModal").modal("show");
+        $("#create-meal-modal").modal("show");
   	  }
       
     })

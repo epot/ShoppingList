@@ -213,6 +213,7 @@ def meal_list(request):
             meal = form.save()
             meal.owners = [request.user]
             meal.save()
+            form = MealForm()
     
     if request.is_ajax():
         return get_monthly_meals(request.user, request.GET['start'], request.GET['end'])
