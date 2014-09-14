@@ -38,7 +38,7 @@
 <script type="text/javascript">
   $(function() {
          $(".datepicker").datepicker({
-           dateFormat: "dd-mm-yy",
+           dateFormat: "dd/mm/yy",
          });
   });
 
@@ -54,7 +54,7 @@
       },
       events: '/shopping/meal/',
       dayClick: function(date, jsEvent, view) {
-        $("#id_meal_date").val(moment(date).format('DD-MM-YYYY'));
+        $("#id_meal_date").val(moment(date).format('DD/MM/YYYY'));
         $("#createMealModal").modal("show");
   	  }
       
