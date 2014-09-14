@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-24 21:01+0200\n"
+"POT-Creation-Date: 2014-09-14 21:08+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,16 +18,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: models.py:12 models.py:22 models.py:34 models.py:45 models.py:63
+#: models.py:12 models.py:22 models.py:34 models.py:45 models.py:64
 msgid "Name"
 msgstr "Nom"
 
-#: models.py:19 models.py:33 templates/shopping/ingredient_list.html:13
+#: models.py:19 models.py:33 models.py:103
+#: templates/shopping/ingredient_list.html:13
 #: templates/shopping/recipe_detail.html:12
 msgid "Category"
 msgstr "Catégorie"
 
-#: models.py:29 models.py:75
+#: models.py:29 models.py:76
 msgid "Unit measurement"
 msgstr "Unité de mesure"
 
@@ -35,85 +36,89 @@ msgstr "Unité de mesure"
 msgid "Units measurement"
 msgstr "Unités de mesure"
 
-#: models.py:42 models.py:74 templates/shopping/ingredient_list.html:12
+#: models.py:42 models.py:75 templates/shopping/ingredient_list.html:12
 #: templates/shopping/recipe_detail.html:13
 msgid "Ingredient"
 msgstr "Ingrédient"
 
-#: models.py:46 models.py:99
+#: models.py:46 models.py:102
 msgid "Servings"
 msgstr "Portions"
 
-#: models.py:47 models.py:102
+#: models.py:47 models.py:105
 msgid "Comment"
 msgstr "Commentaire"
 
-#: models.py:49 models.py:66 models.py:103
+#: models.py:49 models.py:67 models.py:106
 msgid "Owners"
 msgstr "Propriétaires"
 
-#: models.py:56 models.py:72 models.py:98
+#: models.py:56 models.py:73 models.py:101
 #: templates/shopping/recipe_list.html:12
 msgid "Recipe"
 msgstr "Recette"
 
-#: models.py:64 templates/base.html:25
+#: models.py:65 templates/base.html:32
 msgid "Recipes"
 msgstr "Recettes"
 
-#: models.py:69 models.py:73 templates/shopping/shopping_list.html:12
+#: models.py:70 models.py:74 templates/shopping/shopping_list.html:12
 msgid "Shopping list"
 msgstr "Liste de course"
 
-#: models.py:76 templates/shopping/recipe_detail.html:14
+#: models.py:77 templates/shopping/recipe_detail.html:14
 msgid "Quantity"
 msgstr "Quantité"
 
-#: models.py:85
+#: models.py:86
 msgid "Recipe element"
 msgstr "Element de recette"
 
-#: models.py:93
+#: models.py:96
 msgid "Breakfast"
 msgstr "Petit déjeuner"
 
-#: models.py:94
+#: models.py:97
 msgid "Lunch"
 msgstr "Déjeuner"
 
-#: models.py:95
+#: models.py:98
 msgid "Dinner"
 msgstr "Diner"
 
-#: models.py:106
+#: models.py:104
+msgid "Meal date"
+msgstr "Date du repas"
+
+#: models.py:124
 msgid "Meal"
 msgstr "Repas"
 
-#: models.py:107 templates/base.html:28
+#: models.py:125 templates/base.html:35
 msgid "Meals"
 msgstr "Repas"
 
-#: templates/base.html:19
+#: templates/base.html:26
 msgid "Home"
 msgstr "Accueil"
 
-#: templates/base.html:26
+#: templates/base.html:33
 msgid "Ingredients"
 msgstr "Ingrédients"
 
-#: templates/base.html:27
+#: templates/base.html:34
 msgid "Shopping lists"
 msgstr "Listes de course"
 
-#: templates/base.html:34
+#: templates/base.html:41
 msgid "admin"
 msgstr "administration"
 
-#: templates/base.html:39
+#: templates/base.html:46
 msgid "Logout"
 msgstr "Déconnexion"
 
-#: templates/base.html:43 templates/shopping/login.html:9
+#: templates/base.html:50 templates/shopping/login.html:9
 #: templates/shopping/login.html.py:21
 msgid "Login"
 msgstr "Connexion"
@@ -226,15 +231,17 @@ msgstr ""
 msgid "Or use one of your following accounts:"
 msgstr "Ou utilisez l'un de vos comptes suivant:"
 
-#: templates/shopping/meal_list.html:4
-#, fuzzy
+#: templates/shopping/meal_list.html:5
 msgid "My meals"
 msgstr "Repas"
 
-#: templates/shopping/meal_list.html:10
-#, fuzzy
+#: templates/shopping/meal_list.html:12 templates/shopping/meal_list.html:21
 msgid "Add new meal"
-msgstr "Ajouter une nouvelle recette"
+msgstr "Ajouter un nouveau repas"
+
+#: templates/shopping/meal_list.html:31
+msgid "Add meal"
+msgstr "Ajouter repas"
 
 #: templates/shopping/recipe_detail.html:15
 msgid "Action"
@@ -267,7 +274,6 @@ msgid "Add new recipe"
 msgstr "Ajouter une nouvelle recette"
 
 #: templates/shopping/recipeelement_edit.html:23
-#, fuzzy
 msgid "Update ingredient"
 msgstr "Ajouter un ingrédient"
 

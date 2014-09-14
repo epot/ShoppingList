@@ -100,8 +100,8 @@ class Meal(models.Model):
 
     recipe = models.ForeignKey(Recipe, verbose_name=_("Recipe"))
     servings = models.IntegerField(verbose_name=_("Servings"))
-    category = models.CharField(max_length=3, choices=MEAL_CATEGORY_CHOICES)
-    meal_date = models.DateField()
+    category = models.CharField(max_length=3, choices=MEAL_CATEGORY_CHOICES, verbose_name=_("Category"))
+    meal_date = models.DateField(verbose_name=_("Meal date"))
     comment = models.TextField(max_length=4000, blank=True, null=True, verbose_name=_("Comment"))
     owners = models.ManyToManyField(User, verbose_name=_("Owners"))
     
