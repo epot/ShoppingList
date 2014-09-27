@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-14 21:08+0200\n"
+"POT-Creation-Date: 2014-09-27 19:47+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,7 +58,7 @@ msgstr "Propriétaires"
 msgid "Recipe"
 msgstr "Recette"
 
-#: models.py:65 templates/base.html:32
+#: models.py:65 templates/base.html:34
 msgid "Recipes"
 msgstr "Recettes"
 
@@ -94,31 +94,31 @@ msgstr "Date du repas"
 msgid "Meal"
 msgstr "Repas"
 
-#: models.py:125 templates/base.html:35
+#: models.py:125 templates/base.html:37
 msgid "Meals"
 msgstr "Repas"
 
-#: templates/base.html:26
+#: templates/base.html:28
 msgid "Home"
 msgstr "Accueil"
 
-#: templates/base.html:33
+#: templates/base.html:35
 msgid "Ingredients"
 msgstr "Ingrédients"
 
-#: templates/base.html:34
+#: templates/base.html:36
 msgid "Shopping lists"
 msgstr "Listes de course"
 
-#: templates/base.html:41
+#: templates/base.html:43
 msgid "admin"
 msgstr "administration"
 
-#: templates/base.html:46
+#: templates/base.html:48
 msgid "Logout"
 msgstr "Déconnexion"
 
-#: templates/base.html:50 templates/shopping/login.html:9
+#: templates/base.html:52 templates/shopping/login.html:9
 #: templates/shopping/login.html.py:21
 msgid "Login"
 msgstr "Connexion"
@@ -239,9 +239,17 @@ msgstr "Repas"
 msgid "Add new meal"
 msgstr "Ajouter un nouveau repas"
 
+#: templates/shopping/meal_list.html:30 templates/shopping/meal_list.html:53
+msgid "Cancel"
+msgstr "Annuler"
+
 #: templates/shopping/meal_list.html:31
 msgid "Add meal"
 msgstr "Ajouter repas"
+
+#: templates/shopping/meal_list.html:44 templates/shopping/meal_list.html:54
+msgid "Edit meal"
+msgstr "Editer repas"
 
 #: templates/shopping/recipe_detail.html:15
 msgid "Action"
@@ -292,3 +300,6 @@ msgstr "Ajouter une nouvelle liste de course"
 #: templates/shopping/shoppinglist_form.html:4
 msgid " Add a new shopping list "
 msgstr "Ajouter une nouvelle liste de course"
+
+#~ msgid "Editer repas"
+#~ msgstr "Ajouter repas"
