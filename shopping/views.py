@@ -5,7 +5,7 @@ import simplejson
 from django import forms
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
-from django.http import HttpResponseRedirect, HttpResponse, Http404
+from django.http import HttpResponseRedirect, HttpResponse, Http404, HttpResponseForbidden
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -72,7 +72,7 @@ class RecipeDelete(RecipeMixin, DeleteView):
         """ Hook to ensure object is owned by request.user. """
         obj = super(RecipeDelete, self).get_object()
         if self.request.user not in obj.owners.all():
-            raise Http404
+            raise HttpResponseForbidden
         return obj
 
     def delete(self, request, *args, **kwargs):
@@ -98,7 +98,7 @@ class ShoppingListDelete(ShoppingListMixin, DeleteView):
         """ Hook to ensure object is owned by request.user. """
         obj = super(ShoppingListDelete, self).get_object()
         if self.request.user not in obj.owners.all():
-            raise Http404
+            raise HttpResponseForbidden
         return obj
 
     def delete(self, request, *args, **kwargs):
@@ -199,27 +199,48 @@ def element_remove(request, recipe_id, recipeelement_id):
     element = get_object_or_404(RecipeElement, pk=recipeelement_id)
     
     if request.user not in element.recipe.owners.all():
-        raise Http404
+        raise HttpResponseForbidden
 
     element.delete()
     return HttpResponseRedirect(reverse('shopping:recipe_detail', args=(recipe_id,)))
 
 @login_required()
-def meal_list(request):
-    form = MealForm(request.POST or None)
+def meal_list(request, meal_id=None):
+    if meal_id:
+        meal = get_object_or_404(Meal, pk=meal_id)
+        if request.user not in meal.owners.all():
+            return HttpResponseForbidden()
+    else:
+        meal = Meal()
+    
+    form = MealForm(request.POST or None, instance=meal)
     
     if request.method == 'POST':
         if form.is_valid():
             meal = form.save()
-            meal.owners = [request.user]
+            print meal.meal_date
+            if not meal.owners.all():
+                meal.owners = [request.user]
             meal.save()
-            form = MealForm()
+            return HttpResponseRedirect(reverse('shopping:meal_list'))
     
     if request.is_ajax():
         return get_monthly_meals(request.user, request.GET['start'], request.GET['end'])
 
     form.fields['recipe'] = forms.ModelChoiceField(queryset=Recipe.objects.filter(owners__in=[request.user.id]))
     return render(request, 'shopping/meal_list.html', {'form': form})
+
+@login_required()
+def meal_form(request, meal_id):
+    """
+    Return a meal form in HTML content if the request is an AJAX one.
+    """
+    if not request.is_ajax():
+        raise Http404
+    
+    meal = get_object_or_404(Meal, pk=meal_id)
+    form = MealForm(instance=meal)
+    return render(request, 'shopping/meal_form.html', {'form': form})
 
 def get_monthly_meals(user, start, end):
     meals=[]  
@@ -228,8 +249,9 @@ def get_monthly_meals(user, start, end):
     
     for meal_object in meals_objects:
         meal_times = meal_object.get_lunch_times()
-        
+
         meals.append({
+          'id': meal_object.id,
           'title': str(meal_object),
           'start': meal_times[0].strftime("%Y-%m-%d %H:%m"),
           'end': meal_times[1].strftime("%Y-%m-%d %H:%m")

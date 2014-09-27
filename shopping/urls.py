@@ -31,6 +31,8 @@ urlpatterns = patterns('',
     
     
     url(r'^meal/$', views.meal_list, name='meal_list'),
+    url(r'^meal/edit/(?P<meal_id>\d+)$', views.meal_list, name='meal_list'),
+    url(r'^meal/form/(?P<meal_id>\d+)$', views.meal_form, name='meal_form'),
     #url(r'^meal/edit/(?P<pk>\d+)$', views.meal_edit, name='meal_edit'),
     #url(r'^meal/delete/(?P<pk>\d+)$', views.meal_delete, name='meal_delete'),
 

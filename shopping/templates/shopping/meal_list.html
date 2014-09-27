@@ -13,15 +13,15 @@
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="create-meal-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="add-meal-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="myModalLabel">{% trans "Add new meal" %}</h4>
       </div>
-      <form class="form" id="create-meal-form" role="form" action="" method="post">
-        <div class="modal-body">
+      <form class="form" id="add-meal-form" role="form" action="" method="post">
+        <div class="modal-body" id="add-meal-form-body">
             {% csrf_token %} 
             
             {{ form|bootstrap }}
@@ -35,13 +35,37 @@
   </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="edit-meal-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">{% trans "Edit meal" %}</h4>
+      </div>
+      <form class="form" id="edit-meal-form" role="form" action="" method="post">
+        <div class="modal-body" id="edit-meal-form-body">
+            {% csrf_token %} 
+            
+            {{ form|bootstrap }}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">{% trans "Edit meal" %}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
 <script type="text/javascript">
   $(function() {
          $(".datepicker").datepicker({
            dateFormat: "dd/mm/yy",
          });
          {% if form.errors %}
-         $("#create-meal-modal").modal("show");
+         $("#edit-meal-modal").modal("show");
 		 {% endif %}
   });
 
@@ -58,8 +82,25 @@
       events: '/shopping/meal/',
       dayClick: function(date, jsEvent, view) {
         $("#id_meal_date").val(moment(date).format('DD/MM/YYYY'));
-        $("#create-meal-modal").modal("show");
-  	  }
+        $("#add-meal-modal").modal("show");
+  	  },
+  	  eventRender: function (event, element) {
+        element.click(function() {
+          // get form in html before filling the modal
+          $.ajax({
+            url: '/shopping/meal/form/'+ event.id,
+            dataType: 'html', 
+            })
+            .done(function( data ) {
+              $('#edit-meal-form-body').html(data);
+              $('#edit-meal-form').attr('action', 'edit/' + event.id)
+              $('#edit-meal-modal').modal();
+            })
+            .fail(function(request, status, error) {
+              console.log(request + '/' + status + '/' + error)
+            });
+        });
+   	 }
       
     })
   });
