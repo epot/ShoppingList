@@ -269,3 +269,12 @@ def recipe_details(request, recipe_id):
     
     return HttpResponse(simplejson.dumps({'servings': recipe.servings}), content_type='application/json')
 
+def meal_delete(request, meal_id):
+    meal = get_object_or_404(Meal, pk=meal_id)
+    
+    if request.user not in meal.owners.all():
+        raise HttpResponseForbidden
+
+    meal.delete()
+    return HttpResponseRedirect(reverse('shopping:meal_list'))
+

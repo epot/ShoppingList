@@ -50,6 +50,7 @@
             {{ form|bootstrap }}
         </div>
         <div class="modal-footer">
+          <a class="btn btn-danger" id="remove-meal-btn">{% trans "Remove meal" %}</a>
           <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Cancel" %}</button>
           <button type="submit" class="btn btn-primary">{% trans "Edit meal" %}</button>
         </div>
@@ -93,7 +94,8 @@
             })
             .done(function( data ) {
               $('#edit-meal-form-body').html(data);
-              $('#edit-meal-form').attr('action', 'edit/' + event.id)
+              $('#edit-meal-form').attr('action', 'edit/' + event.id);
+              $('#remove-meal-btn').attr('href', 'delete/' + event.id);
               $('#edit-meal-modal').modal();
             })
             .fail(function(request, status, error) {

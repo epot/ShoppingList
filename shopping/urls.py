@@ -34,7 +34,7 @@ urlpatterns = patterns('',
     url(r'^meal/edit/(?P<meal_id>\d+)$', views.meal_list, name='meal_list'),
     url(r'^meal/form/(?P<meal_id>\d+)$', views.meal_form, name='meal_form'),
     #url(r'^meal/edit/(?P<pk>\d+)$', views.meal_edit, name='meal_edit'),
-    #url(r'^meal/delete/(?P<pk>\d+)$', views.meal_delete, name='meal_delete'),
+    url(r'^meal/delete/(?P<meal_id>\d+)$', views.meal_delete, name='meal_delete'),
 
     url(r'^list/$', views.shopping_list, name='list_list'),
     url(r'^list/(?P<list_id>\d+)/$', views.shoppinglist_detail, name='shoppinglist_detail'),
